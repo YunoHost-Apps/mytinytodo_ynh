@@ -1,4 +1,4 @@
-# MyTinyTodo for Yunohost
+# myTinyTodo for Yunohost / LaBriqueInter.net
 
   * en : A **simple** way to manage your todo list. 
   * fr : Un simple, mais **efficace** script de gestion de todo list (*GTD*).
