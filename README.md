@@ -3,8 +3,9 @@
   * en : A **simple** way to manage your todo list. 
   * fr : Un simple, mais **efficace** script de gestion de todo list (*GTD*).
   * [Original Site](http://www.mytinytodo.net/)
-    * [Demo](http://www.mytinytodo.net/)
-    * [Demo for mobile](http://www.mytinytodo.net/)
+   * [Demo](http://www.mytinytodo.net/demo/)
+   * [Demo for mobile](http://www.mytinytodo.net/demo/?pda)
+  * Auteur : Max Pozdeev
 
 ## En image :
 
@@ -16,7 +17,13 @@ Pour le moment, je pars sur une installation simple.
 
   * pas de multi-instance,
   * mysql/mariadb uniquement (pas de sqlite),
-  * gestion des langues (fr, en, de, ru).
+  * gestion des langues 
+   * fr : French
+   * en : English
+   * de : German
+   * ru : Russian
+   * ar : Arabic
+   * zh-cn : Chinese (Simplified)
 
 ## Anglais :
 

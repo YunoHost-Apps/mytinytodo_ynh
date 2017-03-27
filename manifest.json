@@ -4,7 +4,7 @@
     "packaging_format": 1,
     "description": {
         "en": "Simple open source to-do list script.",
-        "fr": "Un simple mais efficace script de gestion de todo list (gtd)."
+        "fr": "Un simple mais efficace script de gestion de todo list (GTD)."
     },
     "url": "http://www.mytinytodo.net/",
     "license": "free",
@@ -57,9 +57,11 @@
                      "en": "Choose the application language",
                      "ru": "Выберите язык приложения",
                      "de": "Wählen Sie die Sprache der Anwendung",
+                     "ar": "اختيار تطبيق لغة",
+                     "zh-cn": "选择语言实现",
                      "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["fr", "en", "de", "ru"],
+                "choices": ["fr", "en", "de", "ar", "zh-cn", "ru"],
                 "default": "fr"
             }
         ]
