@@ -76,7 +76,26 @@ SETUP_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fina
 	temp_dir=$(mktemp -d)
 	unzip -quo source.zip -d $temp_dir	# On passe par un dossier temporaire car unzip ne permet pas d'ignorer le dossier parent.
 	sudo cp -a $temp_dir/*/. $final_path
-	rm -r $temp_dir
+	sudo rm -r $temp_dir
+	# Copie les fichiers additionnels ou modifiés.
+	if test -e "../sources/ajouts"; then
+		sudo cp -a ../sources/ajouts/. "$final_path"
+	fi
+}
+
+UPDATE_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $final_path
+	upd_url=$(cat ../conf/app.src | grep UPDATE_URL | cut -d'|' -f2)
+	upd_checksum=$(cat ../conf/app.src | grep UPDATE_SUM | cut -d'@' -f2)
+	# Download sources from the upstream
+	wget -nv -O source.zip $upd_url
+	# Vérifie la somme de contrôle de la source téléchargée.
+	echo "$upd_checksum source.zip" | md5sum -c --status || ynh_die "Corrupt source"
+	# Extract source into the app dir
+	sudo mkdir -p $final_path
+	temp_dir=$(mktemp -d)
+	unzip -quo source.zip -d $temp_dir	# On passe par un dossier temporaire car unzip ne permet pas d'ignorer le dossier parent.
+	sudo cp -a $temp_dir/*/. $final_path
+	sudo rm -r $temp_dir
 	# Copie les fichiers additionnels ou modifiés.
 	if test -e "../sources/ajouts"; then
 		sudo cp -a ../sources/ajouts/. "$final_path"
@@ -248,7 +267,7 @@ ynh_no_log() {
   ynh_cli_log=/var/log/yunohost/yunohost-cli.log
   sudo cp -a ${ynh_cli_log} ${ynh_cli_log}-move
   eval $@
-  exit_code=$?
+  ext_code=$?
   sudo mv ${ynh_cli_log}-move ${ynh_cli_log}
   return $?
 }
@@ -336,8 +355,8 @@ ynh_make_valid_dbid () {
 # Usage: ynh_exit_properly is used only by the helper ynh_check_error.
 # You must not use it directly.
 ynh_exit_properly () {
-	exit_code=$?
-	if [ "$exit_code" -eq 0 ]; then
+	ext_code=$?
+	if [ "$ext_code" -eq 0 ]; then
 			exit 0	# Exit without error if the script ended correctly
 	fi
 

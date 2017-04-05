@@ -1,4 +1,6 @@
 #!/bin/bash
+
+set -eu
  
 # https://github.com/YunoHost-Apps/wordpress_ynh/blob/code_refactoring/scripts/install
  
@@ -86,23 +88,18 @@ sudo sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
 sudo sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
 sudo sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
 sudo sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
-sudo cp ../conf/config.php ../sources/www/db/config.php
 
+# Recuperation des sources sur le internet et decompression
+SETUP_SOURCE_ZIP
  
-# la partie copie des fichiers, mise en place final
-
-# avec le www
-#sudo cp -r ../sources/www $final_path
-
-# sans le www
-sudo cp -r ../sources/www/* $final_path
-
-#Verifier la syntaxe j'aimerai bien connaitre la valeur de ${user}
-#sudo chown -hR "${user}:" "$DESTDIR"
-#sudo chown -hR "www-data:" "$final_path"
-
 # Changement de droits pour que l'utilisateur puisse sauvegarder
 # sa configuration dans config.php et les sessions dsans /tmp/sessions
+
+sudo cp ../conf/config.php $final_path/db/config.php
+
+sudo rm -f $final_path/setup.php
+sudo rm -f $final_path/db/todolist.db
+
 sudo chmod o+w $final_path/db/config.php
 sudo chmod o+w $final_path/tmp/sessions
 
