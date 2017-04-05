@@ -1,0 +1,94 @@
+#!/bin/bash
+
+set -eu
+
+#=================================================
+# GENERIC STARTING
+#=================================================
+# MANAGE FAILURE OF THE SCRIPT
+#=================================================
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# LOAD SETTINGS
+#=================================================
+
+app=$YNH_APP_INSTANCE_NAME
+
+domain=$(ynh_app_setting_get $app domain)
+path_url=$(ynh_app_setting_get $app path)
+is_public=$(ynh_app_setting_get $app is_public)
+language=$(ynh_app_setting_get $app language)
+final_path=$(ynh_app_setting_get $app final_path)
+db_name=$(ynh_app_setting_get $app db_name)
+
+#=================================================
+# CHECK IF THE APP CAN BE RESTORED
+#=================================================
+
+sudo yunohost app checkurl "${domain}${path_url}" -a "$app" \
+	|| ynh_die "Path not available: ${domain}${path_url}"
+test ! -d $final_path \
+	|| ynh_die "There is already a directory: $final_path "
+
+#=================================================
+# STANDARD RESTORE STEPS
+#=================================================
+# RESTORE OF THE NGINX CONFIGURATION
+#=================================================
+
+conf=/etc/nginx/conf.d/$domain.d/$app.conf
+if [ -f $conf ]; then
+	ynh_die "There is already a nginx conf file at this path: $conf "
+fi
+sudo cp -a ./nginx.conf $conf
+
+#=================================================
+# RESTORE OF THE MAIN DIR OF THE APP
+#=================================================
+
+# Recuperation du zip contenant les corrections et
+# le script de maj de la base
+# il faudrait un numero de version pour le script de
+# la base. Pour le moment je recupere un fichier sql
+# update.sql qui passe dans la version superieur.
+
+UPDATE_SOURCE_ZIP
+
+#=================================================
+# RESTORE OF THE SQL BDD
+#=================================================
+
+db_pwd=$(ynh_app_setting_get $app mysqlpwd)
+# il ne faut recreer la base, c'est une maj
+#ynh_mysql_create_db $db_name $db_name $db_pwd
+
+# il faut prendre le script de mise a jour
+ynh_mysql_connect_as $db_name $db_pwd $db_name < $final_path/db/update.sql
+
+#=================================================
+# RECREATE OF THE DEDICATED USER
+#=================================================
+
+ynh_system_user_create $app	# Recreate the dedicated user, if not exist
+
+#=================================================
+# RESTORE USER RIGHTS
+#=================================================
+
+# Les fichiers appartiennent à l'user wordpress, pour permettre les mises à jour.
+sudo chown -R $app: $final_path
+
+#=================================================
+# GENERIC FINALISATION
+#=================================================
+# RELOAD NGINX 
+#=================================================
+
+sudo systemctl reload nginx
