@@ -113,11 +113,11 @@ sudo chown -R $app: $final_path
 # 0 : pas d'acces publique
 # 1 : acces publique autorise 
 
-if [ $is_public -eq 0 ];
-then
+#if [ $is_public -eq 0 ];
+#then
 	# Retire l'accès public
-	ynh_app_setting_delete $app unprotected_uris
-fi
+#	ynh_app_setting_delete $app unprotected_uris
+#fi
  
 #=================================================
 # RELOAD NGINX
