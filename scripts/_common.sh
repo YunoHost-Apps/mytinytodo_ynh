@@ -94,7 +94,7 @@ UPDATE_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fin
 	sudo mkdir -p $final_path
 	temp_dir=$(mktemp -d)
 	unzip -quo source.zip -d $temp_dir	# On passe par un dossier temporaire car unzip ne permet pas d'ignorer le dossier parent.
-	sudo cp -a $temp_dir/*/. $final_path
+	sudo cp -a $temp_dir/* $final_path
 #	sudo rm -r $temp_dir
 
 	# Copie les fichiers additionnels ou modifiés.
