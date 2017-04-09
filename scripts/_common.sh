@@ -65,6 +65,7 @@ SETUP_SOURCE () {	# Télécharge la source, décompresse et copie dans $final_pa
 }
 
 SETUP_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $final_path
+# Attention l'archive /tmp/xxx/mytinytodo/*
 	src_url=$(cat ../conf/app.src | grep SOURCE_URL | cut -d'>' -f2)
 	src_checksum=$(cat ../conf/app.src | grep SOURCE_SUM | cut -d= -f2)
 	# Download sources from the upstream
@@ -76,7 +77,7 @@ SETUP_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fina
 	temp_dir=$(mktemp -d)
 	unzip -quo source.zip -d $temp_dir	# On passe par un dossier temporaire car unzip ne permet pas d'ignorer le dossier parent.
 	sudo cp -a $temp_dir/*/. $final_path
-	#sudo rm -r $temp_dir
+	sudo rm -r $temp_dir
 	# Copie les fichiers additionnels ou modifiés.
 	if test -e "../sources/ajouts"; then
 		sudo cp -a ../sources/ajouts/. "$final_path"
@@ -84,6 +85,8 @@ SETUP_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fina
 }
 
 UPDATE_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $final_path
+# Attention dans l'update le zip /tmp/xxx/db je n'ai pas respecte l'arboresence 
+# il n'y a pas de repertoire principal mytinytodo, la commande cp est differente
 	upd_url=$(cat ../conf/app.src | grep UPDATE_URL | cut -d'|' -f2)
 	upd_checksum=$(cat ../conf/app.src | grep UPDATE_SUM | cut -d'@' -f2)
 	# Download sources from the upstream
@@ -95,8 +98,7 @@ UPDATE_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fin
 	temp_dir=$(mktemp -d)
 	unzip -quo source.zip -d $temp_dir	# On passe par un dossier temporaire car unzip ne permet pas d'ignorer le dossier parent.
 	sudo cp -a $temp_dir/* $final_path
-#	sudo rm -r $temp_dir
-
+	sudo rm -r $temp_dir
 	# Copie les fichiers additionnels ou modifiés.
 	if test -e "../sources/ajouts"; then
 		sudo cp -a ../sources/ajouts/. "$final_path"

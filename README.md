@@ -9,7 +9,7 @@
 
 ## En image :
 
-![capture mytinytodo](https://framapic.org/kHD4bcOGCnam/p7uc1rDT1B9j.png)
+![capture mytinytodo](http://www.mytinytodo.net/images/shot-v14b1.png)
 
 ## Francais :
 
@@ -28,6 +28,13 @@ Pour le moment, je pars sur une installation simple.
 ## Anglais :
 
   * à faire.
+
+## Mise à jour :
+
+```bash
+yunohost app upgrade --verbose mytinytodo -u https://github.com/plabuse/mytinytodo_ynh
+```
+
 
 ## Astuces :
 
