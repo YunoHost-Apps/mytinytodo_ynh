@@ -34,8 +34,11 @@ db_name=$(ynh_app_setting_get $app db_name)
 
 sudo yunohost app checkurl "${domain}${path_url}" -a "$app" \
 	|| ynh_die "Path not available: ${domain}${path_url}"
-test ! -d $final_path \
-	|| ynh_die "There is already a directory: $final_path "
+
+# Mise en commentaire, c'est une mise a jour, le repertoire
+# existe c'est normal, donc le controle n'est pas judicieux.
+#test ! -d $final_path \
+#	|| ynh_die "There is already a directory: $final_path "
 
 #=================================================
 # STANDARD RESTORE STEPS
@@ -43,11 +46,11 @@ test ! -d $final_path \
 # RESTORE OF THE NGINX CONFIGURATION
 #=================================================
 
-conf=/etc/nginx/conf.d/$domain.d/$app.conf
-if [ -f $conf ]; then
-	ynh_die "There is already a nginx conf file at this path: $conf "
-fi
-sudo cp -a ./nginx.conf $conf
+#conf=/etc/nginx/conf.d/$domain.d/$app.conf
+#if [ -f $conf ]; then
+#	ynh_die "There is already a nginx conf file at this path: $conf "
+#fi
+#sudo cp -a ./nginx.conf $conf
 
 #=================================================
 # RESTORE OF THE MAIN DIR OF THE APP
@@ -83,7 +86,26 @@ ynh_system_user_create $app	# Recreate the dedicated user, if not exist
 #=================================================
 
 # Les fichiers appartiennent à l'user wordpress, pour permettre les mises à jour.
+
+sudo rm -f $final_path/setup.php
+sudo rm -f $final_path/db/todolist.db
+sudo chmod o+w $final_path/db/config.php
+sudo chmod o+w $final_path/tmp/sessions
 sudo chown -R $app: $final_path
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_app_setting_set $app unprotected_uris "/"
+
+# 0 : pas d'acces publique
+# 1 : acces publique autorise 
+
+if [ $is_public -eq 0 ];
+then
+   # Retire l'accès public
+   ynh_app_setting_delete $app unprotected_uris
+fi
 
 #=================================================
 # GENERIC FINALISATION
@@ -92,3 +114,4 @@ sudo chown -R $app: $final_path
 #=================================================
 
 sudo systemctl reload nginx
+sudo yunohost app ssowatconf
