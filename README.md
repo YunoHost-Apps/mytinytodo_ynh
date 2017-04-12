@@ -27,9 +27,23 @@ Pour le moment, je pars sur une installation simple.
 
 ## Anglais :
 
-  * à faire.
+   * Multiple lists
+   * Task notes
+   * Tags (and tag cloud)
+   * Due dates (input format: y-m-d, m/d/y, d.m.y, m/d, d.m)
+   * Priority (-1, 0, +1, +2)
+   * Different sortings including sort by drag-and-drop
+   * Search
+   * Password protection
+   * Smart syntax improves creation of tasks
+    * (usage: /priority/ Task /tags/)
+   * Print-friendly CSS
+   * Style for mobiles devices 
 
 ## Mise à jour :
+
+  * Juste pour moi, le projet n'a pas bougé depuis plusieurs années, si il y a des modifications, je ferais une archive maison.
+  * La mise a jour n'utilisera pas le mécanisme d'origine (setup.php)
 
 ```bash
 yunohost app upgrade --verbose mytinytodo -u https://github.com/plabuse/mytinytodo_ynh
