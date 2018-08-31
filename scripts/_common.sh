@@ -18,6 +18,24 @@ CHECK_FINALPATH () {	# Vérifie que le dossier de destination n'est pas déjà u
 	test ! -e "$final_path" || ynh_die "This path already contains a folder"
 }
 
+CHECK_PHP_VERSION () {
+        phpfullversion=$(php -r "echo PHP_VERSION;")
+        # echo ${phpfullversion}
+        # 7.1.15-1+0~20180306120016.15+stretch~1.gbp78327e
+
+        majeur=${phpfullversion::1}
+        # echo ${majeur}
+        # 7
+
+        if [ $majeur -ge 7 ]; then
+                # Quand la version de php est >= 7
+                return 0
+        else
+                # Dans les autres cas
+                return 1
+        fi
+}
+
 #=================================================
 # DISPLAYING
 #=================================================
@@ -81,6 +99,18 @@ SETUP_SOURCE_ZIP () {	# Télécharge la source, décompresse et copie dans $fina
 	# Copie les fichiers additionnels ou modifiés.
 	if test -e "../sources/ajouts"; then
 		sudo cp -a ../sources/ajouts/. "$final_path"
+	fi
+}
+
+SETUP_SOURCE_GIT () {
+	# Recuperation de la version compatible php7
+	sudo mkdir -p $final_path
+	ynh_setup_source $final_path
+	# Copie les fichiers additionnels ou modifiés qui ne sont pas sur github.
+	if test -e "../sources/ajouts"; then
+		sudo cp -a ../sources/ajouts/lang/ar.php "$final_path/lang"
+		sudo cp -a ../sources/ajouts/lang/fr.php "$final_path/lang"
+		sudo cp -a ../sources/ajouts/lang/zh-cn.php "$final_path/lang"
 	fi
 }
 
