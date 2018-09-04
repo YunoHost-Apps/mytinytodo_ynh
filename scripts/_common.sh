@@ -10,7 +10,11 @@ CHECK_USER () {	# Vérifie la validité de l'user admin
 }
 
 CHECK_DOMAINPATH () {	# Vérifie la disponibilité du path et du domaine.
-	sudo yunohost app checkurl $domain$path_url -a $app
+	# sudo yunohost app checkurl $domain$path_url -a $app
+	# Check web path availability
+	ynh_webpath_available $domain $path_url
+	# Register (book) web path
+	ynh_webpath_register $app $domain $path_url
 }
 
 CHECK_FINALPATH () {	# Vérifie que le dossier de destination n'est pas déjà utilisé.

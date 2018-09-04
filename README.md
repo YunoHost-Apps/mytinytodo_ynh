@@ -39,6 +39,7 @@ Pour le moment, je pars sur une installation simple.
     * (usage: /priority/ Task /tags/)
    * Print-friendly CSS
    * Style for mobiles devices 
+   * Distributed under the GNU GPL License
 
 ## Mise à jour :
 
@@ -49,6 +50,13 @@ Pour le moment, je pars sur une installation simple.
 yunohost app upgrade --verbose mytinytodo -u https://github.com/plabuse/mytinytodo_ynh
 ```
 
+## Pour tester la version compatible php7 :
+
+  * 20180901 : Il faut utiliser la branche testing pour le moment.
+
+```bash
+yunohost app install https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/testing --debug
+```
 
 ## Astuces :
 

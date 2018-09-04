@@ -15,6 +15,8 @@ set -eu
 source _common.sh
 source /usr/share/yunohost/helpers
 
+ynh_abort_if_errors     # Active trap pour arrêter le script si une erreur est détectée.
+
 #=================================================
 # LOAD SETTINGS
 #=================================================
@@ -32,8 +34,11 @@ db_name=$(ynh_app_setting_get $app db_name)
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
 
-sudo yunohost app checkurl "${domain}${path_url}" -a "$app" \
-	|| ynh_die "Path not available: ${domain}${path_url}"
+#sudo yunohost app checkurl "${domain}${path_url}" -a "$app" \
+#	|| ynh_die "Path not available: ${domain}${path_url}"
+
+ynh_webpath_register ${app} ${domain} ${path_url} \
+        || ynh_die "Path not available: ${domain}${path_url}"
 
 # Mise en commentaire, c'est une mise a jour, le repertoire
 # existe c'est normal, donc le controle n'est pas judicieux.
