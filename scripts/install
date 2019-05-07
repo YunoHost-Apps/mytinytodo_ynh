@@ -90,7 +90,13 @@ sudo sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
 sudo sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
 
 # Recuperation des sources sur le internet et decompression
-SETUP_SOURCE_ZIP
+if CHECK_PHP_VERSION; then
+	# echo "Tu es en php 7 est +"
+	SETUP_SOURCE_GIT
+else
+	# echo "Tu es dans une version inferieur a 7"
+	SETUP_SOURCE_ZIP
+fi
  
 # Changement de droits pour que l'utilisateur puisse sauvegarder
 # sa configuration dans config.php et les sessions dsans /tmp/sessions

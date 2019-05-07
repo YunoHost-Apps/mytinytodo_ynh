@@ -2,3 +2,6 @@ SOURCE_URL>http://www.mytinytodo.net/latest.php
 SOURCE_SUM=2cfea5e8121979b6a511f88276a6d4db
 UPDATE_URL|http://pierre.levasseur.free.fr/mytinytodo/update.zip
 UPDATE_SUM@f8ed8abbcb9055c34f402a31e4574106
+SOURCE_URL=https://github.com/ptrckkk/myTinyTodo/archive/master.zip
+SOURCE_SUM=df901cd9ec71b72420457bca2111d9132bcef60f79be87e6c67bdf2070f13bf1
+SOURCE_FORMAT=zip

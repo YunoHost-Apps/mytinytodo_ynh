@@ -17,8 +17,10 @@ if [ ! -e _common.sh ]; then
 	sudo cp ../settings/scripts/_common.sh ./_common.sh
 	sudo chmod a+rx _common.sh
 fi
+
 source _common.sh
 source /usr/share/yunohost/helpers
+ynh_abort_if_errors     # Active trap pour arrêter le script si une erreur est détectée.
 
 #=================================================
 # LOAD SETTINGS
