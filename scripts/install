@@ -60,7 +60,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 # # Charge les commandes sql communes à tous les scripts.
 # # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
-# ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
+ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -97,43 +97,30 @@ ynh_add_fpm_config --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
-# NGINX CONFIGURATION
+# MODIFY A CONFIG FILE
 #=================================================
- 
-# Copie le fichier de config nginx
-# cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
-# # Modifie les variables dans le fichier de configuration nginx
-# #location directive
-# sed -i "s@__PATHTOCHANGE__@$path_url@g" /etc/nginx/conf.d/$domain.d/$app.conf
-# #alias directive, il faut peut etre ajout un / apres final_path
-# sed -i "s@__FINALPATH__@$final_path@g" /etc/nginx/conf.d/$domain.d/$app.conf
- 
- 
+
 # # verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
 # # la nom de la base et l'utilisateur de la base on la même valeur
 # # mise en place de la config de la base au niveau de mytinytodo
- 
-# sed -i "s@__TODO_HOST__@localhost@g" ../conf/config.php
-# sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
-# sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
-# sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
-# sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
- 
-# # Changement de droits pour que l'utilisateur puisse sauvegarder
-# # sa configuration dans config.php et les sessions dsans /tmp/sessions
 
-# cp ../conf/config.php $final_path/db/config.php
+cp ../conf/config.php $final_path/db/config.php
 
-# rm -f $final_path/setup.php
-# rm -f $final_path/db/todolist.db
+ynh_replace_string --match_string="__TODO_LANG__"     --replace_string="$language" --target_file="$final_path/db/config.php"
+ynh_replace_string --match_string="__TODO_DB__"       --replace_string="$db_name"  --target_file="$final_path/db/config.php"
+ynh_replace_string --match_string="__TODO_USER__"     --replace_string="$db_name"  --target_file="$final_path/db/config.php"
+ynh_replace_string --match_string="__TODO_PASSWORD__" --replace_string="$db_pwd"   --target_file="$final_path/db/config.php"
+ 
+ynh_secure_remove --file="$final_path/setup.php"
+ynh_secure_remove --file="$final_path/db/todolist.db"
 
 # #=================================================
 # # SECURE FILES AND DIRECTORIES
 # #=================================================
 
 # # Set permissions to app files
-# chmod o+w $final_path/db/config.php
-# chmod o+w $final_path/tmp/sessions
+chmod 755 $final_path/db/config.php
+chmod 755 $final_path/tmp/sessions
 
 # je donne les droits a mytinytodo sur /var/www/mytinyto/*
 chown -R $app: $final_path
