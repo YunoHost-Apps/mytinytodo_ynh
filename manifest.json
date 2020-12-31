@@ -8,18 +8,18 @@
     },
     "url": "http://www.mytinytodo.net/",
     "license": "GPL-2.0",
-    "version": "1.4.3",
+    "version": "1.6.3~ynh1",
     "maintainer": {
         "name": "plabuse",
         "email": "pierre.levasseur@free.fr"
     },
     "requirements": {
-        "yunohost": ">= 2.5.6"
+        "yunohost": ">= 3.8.1"
     },
     "multi_instance": false,
     "services": [
         "nginx",
-        "php5-fpm",
+        "php7.0-fpm",
         "mysql"
     ],
     "arguments": {
@@ -56,10 +56,6 @@
                 "name": "language",
                 "ask": {
                      "en": "Choose the application language",
-                     "ru": "Выберите язык приложения",
-                     "de": "Wählen Sie die Sprache der Anwendung",
-                     "ar": "اختيار تطبيق لغة",
-                     "zh-cn": "选择语言实现",
                      "fr": "Choisissez la langue de l'application"
                 },
                 "choices": ["fr", "en", "de", "ar", "zh-cn", "ru"],

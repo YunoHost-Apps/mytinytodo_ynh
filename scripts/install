@@ -1,117 +1,139 @@
 #!/bin/bash
 
-set -eu
- 
-# https://github.com/YunoHost-Apps/wordpress_ynh/blob/code_refactoring/scripts/install
- 
 #=================================================
-# GENERIC STARTING
+# GENERIC START
 #=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
- 
+
 source _common.sh
 source /usr/share/yunohost/helpers
- 
+
 #=================================================
-# MANAGE FAILURE OF THE SCRIPT
+# MANAGE SCRIPT FAILURE
 #=================================================
- 
-ynh_abort_if_errors	# Active trap pour arrêter le script si une erreur est détectée.
+
+ynh_clean_setup () {
+	### Remove this function if there's nothing to clean before calling the remove script.
+	true
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
  
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
- 
-app=$YNH_APP_INSTANCE_NAME
- 
-# Retrieve arguments
+
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 is_public=$YNH_APP_ARG_IS_PUBLIC
 language=$YNH_APP_ARG_LANGUAGE
- 
-path_url=$(ynh_normalize_url_path $path_url)	# Vérifie et corrige la syntaxe du path.
-CHECK_DOMAINPATH	                        # Vérifie la disponibilité du path et du domaine.
-CHECK_FINALPATH                                 # Vérifie que le dossier de destination n'est pas déjà utilisé.
- 
-sudo mkdir -p $final_path
- 
+
+app=$YNH_APP_INSTANCE_NAME
+
+#=================================================
+# CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
+#=================================================
+ynh_script_progression --message="Validating installation parameters..." --weight=1
+
+final_path=/var/www/$app
+test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
+
+# Register (book) web path
+ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
+
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
- 
-ynh_app_setting_set $app domain $domain
-ynh_app_setting_set $app path $path_url
-ynh_app_setting_set $app is_public $is_public
-ynh_app_setting_set $app language $language
-ynh_app_setting_set $app final_path $final_path
- 
+ynh_script_progression --message="Storing installation settings..." --time --weight=1
+
+ynh_app_setting_set --app=$app --key=domain --value=$domain
+ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=is_public --value=$is_public
+ynh_app_setting_set --app=$app --key=language --value=$language
+
 #=================================================
-# CREATE A SQL BDD
+# CREATE A MYSQL DATABASE
 #=================================================
- 
-db_name=$(ynh_make_valid_dbid $app)
-ynh_app_setting_set $app db_name $db_name
-# $1 ownerdelabase, $2 namedelabase
-ynh_mysql_generate_db $db_name $db_name
- 
+ynh_script_progression --message="Creating a MySQL database..." --time --weight=1
+
+db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
+ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
+
 # Charge les commandes sql communes à tous les scripts.
 # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
 ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
- 
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --time --weight=1
+
+ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir="$final_path"
+
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
- 
-ynh_system_user_create $app	# Créer un utilisateur système dédié à l'app mytinytodo
- 
+ynh_script_progression --message="Configuring system user..." --time --weight=1
+
+# Create a system user
+ynh_system_user_create --username=$app
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
+
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --package="$extra_php_dependencies"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
  
 # Copie le fichier de config nginx
-sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 # Modifie les variables dans le fichier de configuration nginx
 #location directive
-sudo sed -i "s@__PATHTOCHANGE__@$path_url@g" /etc/nginx/conf.d/$domain.d/$app.conf
+sed -i "s@__PATHTOCHANGE__@$path_url@g" /etc/nginx/conf.d/$domain.d/$app.conf
 #alias directive, il faut peut etre ajout un / apres final_path
-sudo sed -i "s@__FINALPATH__@$final_path@g" /etc/nginx/conf.d/$domain.d/$app.conf
+sed -i "s@__FINALPATH__@$final_path@g" /etc/nginx/conf.d/$domain.d/$app.conf
  
  
 # verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
 # la nom de la base et l'utilisateur de la base on la même valeur
 # mise en place de la config de la base au niveau de mytinytodo
  
-sudo sed -i "s@__TODO_HOST__@localhost@g" ../conf/config.php
-sudo sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
-sudo sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
-sudo sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
-sudo sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
-
-# Recuperation des sources sur le internet et decompression
-if CHECK_PHP_VERSION; then
-	# echo "Tu es en php 7 est +"
-	SETUP_SOURCE_GIT
-else
-	# echo "Tu es dans une version inferieur a 7"
-	SETUP_SOURCE_ZIP
-fi
+sed -i "s@__TODO_HOST__@localhost@g" ../conf/config.php
+sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
+sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
+sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
+sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
  
 # Changement de droits pour que l'utilisateur puisse sauvegarder
 # sa configuration dans config.php et les sessions dsans /tmp/sessions
 
-sudo cp ../conf/config.php $final_path/db/config.php
+cp ../conf/config.php $final_path/db/config.php
 
-sudo rm -f $final_path/setup.php
-sudo rm -f $final_path/db/todolist.db
+rm -f $final_path/setup.php
+rm -f $final_path/db/todolist.db
 
-sudo chmod o+w $final_path/db/config.php
-sudo chmod o+w $final_path/tmp/sessions
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+
+# Set permissions to app files
+chmod o+w $final_path/db/config.php
+chmod o+w $final_path/tmp/sessions
 
 # je donne les droits a mytinytodo sur /var/www/mytinyto/*
-sudo chown -R $app: $final_path
- 
+chown -R $app: $final_path
+
 #=================================================
 # SETUP SSOWAT
 #=================================================
@@ -129,6 +151,12 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
- 
-sudo systemctl reload nginx
-sudo yunohost app ssowatconf
+ynh_script_progression --message="Reloading NGINX web server..." --time --weight=1
+
+ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression --message="Installation of $app completed" --time --last
