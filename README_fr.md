@@ -23,7 +23,7 @@ Un moyen simple de gérer votre liste de tâches dans le style AJAX. Écrit en P
 
 ## Configuration
 
-Comment configurer cette application : via le panneau d'administration, un fichier brut en SSH ou tout autre moyen.
+Comment configurer cette application : via le panneau d'administration.
 
 ## Documentation
 

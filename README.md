@@ -23,6 +23,8 @@ Simple way to manage your todo list in AJAX style. Written in PHP and jQuery. Da
 
 ## Configuration
 
+ * How to configure this app: From an admin panel.
+
 ## Documentation
 
  * Official documentation: https://www.mytinytodo.net/faq.php
