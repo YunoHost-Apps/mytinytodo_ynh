@@ -53,10 +53,10 @@ ynh_app_setting_set --app=$app --key=language --value=$language
 #=================================================
 ynh_script_progression --message="Creating a MySQL database..." --weight=2
 
-db_name=$(ynh_sanitize_dbid --db_name=$app)
-db_user=$db_name
-ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
+# db_name=$(ynh_sanitize_dbid --db_name=$app)
+# db_user=$db_name
+# ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+# ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 # # # Charge les commandes sql communes à tous les scripts.
 # # # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
