@@ -1,15 +1,15 @@
 # myTinyTodo for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/mytinytodo.svg)](https://dash.yunohost.org/appci/app/mytinytodo) ![](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)  
-[![Install mytinytodo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
+[![Install myTinyTodo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
-> *This package allows you to install mytinytodo quickly and simply on a YunoHost server.  
+> *This package allows you to install myTinyTodo quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-Quick description of this app.
+Simple way to manage your todo list in AJAX style. Written in PHP and jQuery. Data stored in MySQL database.
 
 **Shipped version:** 1.6.3
 
@@ -32,8 +32,8 @@ Quick description of this app.
 
 #### Multi-user support
 
-Are LDAP and HTTP auth supported?
-Can the app be used by multiple users?
+* Are LDAP and HTTP auth supported?
+* Can the app be used by multiple users?
 
 #### Supported architectures
 
@@ -48,14 +48,10 @@ Can the app be used by multiple users?
 
 * Other info you would like to add about this app.
 
-**More info on the documentation page:**  
-https://yunohost.org/packaging_apps
-
 ## Links
 
  * Report a bug: https://github.com/YunoHost-Apps/mytinytodo_ynh/issues
  * App website: http://www.mytinytodo.net/
- * Upstream app repository: Link to the official repository of the upstream app.
  * YunoHost website: https://yunohost.org/
 
 ---
