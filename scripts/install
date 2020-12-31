@@ -62,9 +62,9 @@ db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
-# Charge les commandes sql communes à tous les scripts.
-# mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
-ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
+# # Charge les commandes sql communes à tous les scripts.
+# # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
+# ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -142,8 +142,6 @@ ynh_script_progression --message="Configuring SSOwat..." --weight=1
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission "main" --add "visitors"
 fi
 
