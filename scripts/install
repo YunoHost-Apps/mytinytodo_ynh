@@ -58,9 +58,9 @@ db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
-# # Charge les commandes sql communes à tous les scripts.
-# # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
-ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
+# # # Charge les commandes sql communes à tous les scripts.
+# # # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
+# ynh_mysql_connect_as $db_name $db_pwd $db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -104,23 +104,23 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 # # la nom de la base et l'utilisateur de la base on la même valeur
 # # mise en place de la config de la base au niveau de mytinytodo
 
-cp ../conf/config.php $final_path/db/config.php
+# cp ../conf/config.php $final_path/db/config.php
 
-ynh_replace_string --match_string="__TODO_LANG__"     --replace_string="$language" --target_file="$final_path/db/config.php"
-ynh_replace_string --match_string="__TODO_DB__"       --replace_string="$db_name"  --target_file="$final_path/db/config.php"
-ynh_replace_string --match_string="__TODO_USER__"     --replace_string="$db_name"  --target_file="$final_path/db/config.php"
-ynh_replace_string --match_string="__TODO_PASSWORD__" --replace_string="$db_pwd"   --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__TODO_LANG__"     --replace_string="$language" --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__TODO_DB__"       --replace_string="$db_name"  --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__TODO_USER__"     --replace_string="$db_name"  --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__TODO_PASSWORD__" --replace_string="$db_pwd"   --target_file="$final_path/db/config.php"
  
-ynh_secure_remove --file="$final_path/setup.php"
-ynh_secure_remove --file="$final_path/db/todolist.db"
+# ynh_secure_remove --file="$final_path/setup.php"
+# ynh_secure_remove --file="$final_path/db/todolist.db"
 
 # #=================================================
 # # SECURE FILES AND DIRECTORIES
 # #=================================================
 
 # # Set permissions to app files
-chmod 755 $final_path/db/config.php
-chmod 755 $final_path/tmp/sessions
+# chmod 755 $final_path/db/config.php
+# chmod 755 $final_path/tmp/sessions
 
 # je donne les droits a mytinytodo sur /var/www/mytinyto/*
 chown -R $app: $final_path
