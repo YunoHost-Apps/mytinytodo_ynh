@@ -53,8 +53,23 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
+	# Create a temporary directory
+	tmpdir="$(mktemp -d)"
+
+	# Backup the config file in the temp dir
+	cp -ar "$final_path/db" "$tmpdir/db"
+
+	# Remove the app directory securely
+	ynh_secure_remove --file="$final_path"
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
+
+	# Copy the admin saved settings from tmp directory to final path	
+	cp -ar "$tmpdir/db" "$final_path/db" 
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
 fi
 
 #=================================================
@@ -96,13 +111,11 @@ ynh_add_fpm_config
 # RESTORE USER RIGHTS
 #=================================================
 
-# Les fichiers appartiennent à l'user wordpress, pour permettre les mises à jour.
-
 #rm -f $final_path/setup.php
 #rm -f $final_path/db/todolist.db
 
-# chmod o+w $final_path/db/config.php
-# chmod o+w $final_path/tmp/sessions
+chmod 775 $final_path/db/config.php
+chmod 755 $final_path/tmp/sessions
 chown -R $app: $final_path
 
 #=================================================
