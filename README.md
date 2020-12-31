@@ -23,13 +23,9 @@ Quick description of this app.
 
 ## Configuration
 
- Default login
-  user:     **admin**
-  password: **admin**
-
 ## Documentation
 
- * Official documentation: Link to the official documentation of this app
+ * Official documentation: https://www.mytinytodo.net/faq.php
  * YunoHost documentation: If specific documentation is needed, feel free to contribute.
 
 ## YunoHost specific features
