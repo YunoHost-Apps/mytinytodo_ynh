@@ -1,9 +1,9 @@
 ;; Test complet
    ; Manifest
       domain="domain.tld"  (DOMAIN)
-      path="/path"   (PATH)
+      path="/path"         (PATH)
       language="fr"
-      is_public=1 (PUBLIC|public=1|private=0)
+      is_public=1          (PUBLIC|public=1|private=0)
    ; Checks
       pkg_linter=1
       setup_sub_dir=1
@@ -12,11 +12,10 @@
       setup_private=1
       setup_public=1
       upgrade=1
-      upgrade=1   from_commit=CommitHash
       backup_restore=1
-      multi_instance=1
+      multi_instance=0
       port_already_use=0
-      change_url=1
+      change_url=0
 ;;; Options
 Email=
 Notification=none
@@ -24,4 +23,3 @@ Notification=none
    ; commit=CommitHash
       name=Name and date of the commit.
       manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
-
