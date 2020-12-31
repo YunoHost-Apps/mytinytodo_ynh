@@ -97,39 +97,39 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
  
 # Copie le fichier de config nginx
-cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
-# Modifie les variables dans le fichier de configuration nginx
-#location directive
-sed -i "s@__PATHTOCHANGE__@$path_url@g" /etc/nginx/conf.d/$domain.d/$app.conf
-#alias directive, il faut peut etre ajout un / apres final_path
-sed -i "s@__FINALPATH__@$final_path@g" /etc/nginx/conf.d/$domain.d/$app.conf
+# cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+# # Modifie les variables dans le fichier de configuration nginx
+# #location directive
+# sed -i "s@__PATHTOCHANGE__@$path_url@g" /etc/nginx/conf.d/$domain.d/$app.conf
+# #alias directive, il faut peut etre ajout un / apres final_path
+# sed -i "s@__FINALPATH__@$final_path@g" /etc/nginx/conf.d/$domain.d/$app.conf
  
  
-# verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
-# la nom de la base et l'utilisateur de la base on la même valeur
-# mise en place de la config de la base au niveau de mytinytodo
+# # verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
+# # la nom de la base et l'utilisateur de la base on la même valeur
+# # mise en place de la config de la base au niveau de mytinytodo
  
-sed -i "s@__TODO_HOST__@localhost@g" ../conf/config.php
-sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
-sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
-sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
-sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
+# sed -i "s@__TODO_HOST__@localhost@g" ../conf/config.php
+# sed -i "s@__TODO_DB__@$db_name@g" ../conf/config.php
+# sed -i "s@__TODO_USER__@$db_name@g" ../conf/config.php
+# sed -i "s@__TODO_PASSWORD__@$db_pwd@g" ../conf/config.php
+# sed -i "s@__TODO_LANG__@$language@g" ../conf/config.php
  
-# Changement de droits pour que l'utilisateur puisse sauvegarder
-# sa configuration dans config.php et les sessions dsans /tmp/sessions
+# # Changement de droits pour que l'utilisateur puisse sauvegarder
+# # sa configuration dans config.php et les sessions dsans /tmp/sessions
 
-cp ../conf/config.php $final_path/db/config.php
+# cp ../conf/config.php $final_path/db/config.php
 
-rm -f $final_path/setup.php
-rm -f $final_path/db/todolist.db
+# rm -f $final_path/setup.php
+# rm -f $final_path/db/todolist.db
 
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
+# #=================================================
+# # SECURE FILES AND DIRECTORIES
+# #=================================================
 
-# Set permissions to app files
-chmod o+w $final_path/db/config.php
-chmod o+w $final_path/tmp/sessions
+# # Set permissions to app files
+# chmod o+w $final_path/db/config.php
+# chmod o+w $final_path/tmp/sessions
 
 # je donne les droits a mytinytodo sur /var/www/mytinyto/*
 chown -R $app: $final_path
@@ -137,17 +137,16 @@ chown -R $app: $final_path
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_app_setting_set $app unprotected_uris "/"
+ynh_script_progression --message="Configuring SSOwat..." --weight=1
 
-# 0 : pas d'acces publique
-# 1 : acces publique autorise 
-
-if [ $is_public -eq 0 ];
+# Make app public if necessary or protect it
+if [ $is_public -eq 1 ]
 then
-	# Retire l'accès public
-	ynh_app_setting_delete $app unprotected_uris
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
+	ynh_permission_update --permission "main" --add "visitors"
 fi
- 
+
 #=================================================
 # RELOAD NGINX
 #=================================================
