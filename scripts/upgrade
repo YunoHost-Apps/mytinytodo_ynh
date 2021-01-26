@@ -1,13 +1,7 @@
 #!/bin/bash
 
-set -eu
-
 #=================================================
-# GENERIC STARTING
-#=================================================
-# MANAGE FAILURE OF THE SCRIPT
-#=================================================
-
+# GENERIC START
 #=================================================
 # IMPORT GENERIC HELPERS
 #=================================================
@@ -15,108 +9,147 @@ set -eu
 source _common.sh
 source /usr/share/yunohost/helpers
 
-ynh_abort_if_errors     # Active trap pour arrêter le script si une erreur est détectée.
-
 #=================================================
 # LOAD SETTINGS
 #=================================================
+ynh_script_progression --message="Loading installation settings..." --weight=1
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get $app domain)
-path_url=$(ynh_app_setting_get $app path)
-is_public=$(ynh_app_setting_get $app is_public)
-language=$(ynh_app_setting_get $app language)
-final_path=$(ynh_app_setting_get $app final_path)
-db_name=$(ynh_app_setting_get $app db_name)
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+path_url=$(ynh_app_setting_get --app=$app --key=path)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
+language=$(ynh_app_setting_get --app=$app --key=language)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
-# CHECK IF THE APP CAN BE RESTORED
+# CHECK VERSION
 #=================================================
 
-#sudo yunohost app checkurl "${domain}${path_url}" -a "$app" \
-#	|| ynh_die "Path not available: ${domain}${path_url}"
-
-ynh_webpath_register ${app} ${domain} ${path_url} \
-        || ynh_die "Path not available: ${domain}${path_url}"
-
-# Mise en commentaire, c'est une mise a jour, le repertoire
-# existe c'est normal, donc le controle n'est pas judicieux.
-#test ! -d $final_path \
-#	|| ynh_die "There is already a directory: $final_path "
+upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
-# STANDARD RESTORE STEPS
+# ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-# RESTORE OF THE NGINX CONFIGURATION
-#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-#conf=/etc/nginx/conf.d/$domain.d/$app.conf
-#if [ -f $conf ]; then
-#	ynh_die "There is already a nginx conf file at this path: $conf "
+#
+# N.B. : the followings setting migrations snippets are provided as *EXAMPLES*
+# of what you may want to do in some cases (e.g. a setting was not defined on
+# some legacy installs and you therefore want to initiaze stuff during upgrade)
+#
+
+# If db_name doesn't exist, create it
+#if [ -z "$db_name" ]; then
+#	db_name=$(ynh_sanitize_dbid --db_name=$app)
+#	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 #fi
-#sudo cp -a ./nginx.conf $conf
+
+# If final_path doesn't exist, create it
+#if [ -z "$final_path" ]; then
+#	final_path=/var/www/$app
+#	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+#fi
 
 #=================================================
-# RESTORE OF THE MAIN DIR OF THE APP
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=3
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	# Restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-# Recuperation du zip contenant les corrections et
-# le script de maj de la base
-# il faudrait un numero de version pour le script de
-# la base. Pour le moment je recupere un fichier sql
-# update.sql qui passe dans la version superieur.
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Upgrading source files..." --weight=2
 
-UPDATE_SOURCE_ZIP
+	# Create a temporary directory
+	tmpdir="$(mktemp -d)"
+
+	# Backup the config file in the temp dir
+	cp -ar "$final_path/db" "$tmpdir/db"
+
+	# Remove the app directory securely
+	ynh_secure_remove --file="$final_path"
+
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$final_path"
+
+	# Copy the admin saved settings from tmp directory to final path	
+	cp -ar "$tmpdir/db" "$final_path/db" 
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
+fi
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
+
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config
 
 #=================================================
 # RESTORE OF THE SQL BDD
 #=================================================
 
-db_pwd=$(ynh_app_setting_get $app mysqlpwd)
-# il ne faut recreer la base, c'est une maj
-#ynh_mysql_create_db $db_name $db_name $db_pwd
+# db_pwd=$(ynh_app_setting_get $app mysqlpwd)
+# # il ne faut recreer la base, c'est une maj
+# #ynh_mysql_create_db $db_name $db_name $db_pwd
 
-# il faut prendre le script de mise a jour
-ynh_mysql_connect_as $db_name $db_pwd $db_name < $final_path/db/update.sql
-
-#=================================================
-# RECREATE OF THE DEDICATED USER
-#=================================================
-
-ynh_system_user_create $app	# Recreate the dedicated user, if not exist
+# # il faut prendre le script de mise a jour
+# ynh_mysql_connect_as $db_name $db_pwd $db_name < $final_path/db/update.sql
 
 #=================================================
 # RESTORE USER RIGHTS
 #=================================================
 
-# Les fichiers appartiennent à l'user wordpress, pour permettre les mises à jour.
+ynh_secure_remove --file="$final_path/setup.php"
+ynh_secure_remove --file="$final_path/db/todolist.db"
 
-sudo rm -f $final_path/setup.php
-sudo rm -f $final_path/db/todolist.db
-sudo chmod o+w $final_path/db/config.php
-sudo chmod o+w $final_path/tmp/sessions
-sudo chown -R $app: $final_path
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-ynh_app_setting_set $app unprotected_uris "/"
-
-# 0 : pas d'acces publique
-# 1 : acces publique autorise 
-
-if [ $is_public -eq 0 ];
-then
-   # Retire l'accès public
-   ynh_app_setting_delete $app unprotected_uris
-fi
+chmod 775 $final_path/db/config.php
+chmod 755 $final_path/tmp/sessions
+chown -R $app: $final_path
 
 #=================================================
-# GENERIC FINALISATION
+# RELOAD NGINX
 #=================================================
-# RELOAD NGINX 
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+
+ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# END OF SCRIPT
 #=================================================
 
-sudo systemctl reload nginx
-sudo yunohost app ssowatconf
+ynh_script_progression --message="Upgrade of $app completed" --last

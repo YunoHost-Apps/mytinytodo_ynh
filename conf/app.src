@@ -1,7 +1,8 @@
-SOURCE_URL>http://www.mytinytodo.net/latest.php
-SOURCE_SUM=2cfea5e8121979b6a511f88276a6d4db
-UPDATE_URL|http://pierre.levasseur.free.fr/mytinytodo/update.zip
-UPDATE_SUM@f8ed8abbcb9055c34f402a31e4574106
-SOURCE_URL=https://github.com/ptrckkk/myTinyTodo/archive/master.zip
-SOURCE_SUM=df901cd9ec71b72420457bca2111d9132bcef60f79be87e6c67bdf2070f13bf1
+SOURCE_URL=https://www.mytinytodo.net/latest.php
+SOURCE_SUM=8bb32d48c96091403bfc9a54f574f92c87e018544ddb4c526b45a5d1a67a9831
+SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=
+SOURCE_EXTRACT=true
+
