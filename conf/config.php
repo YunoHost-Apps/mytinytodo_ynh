@@ -10,7 +10,7 @@ $config['db'] = 'mysql';
 $config['mysql.host'] = "localhost";
 $config['mysql.db'] = "__DB_NAME__";
 $config['mysql.user'] = "__DB_NAME__";
-$config['mysql.password'] = "__DB_PASSWORD__"; 
+$config['mysql.password'] = "__DB_PWD__"; 
 
 # Tables prefix
 $config['prefix'] = "mtt_";
