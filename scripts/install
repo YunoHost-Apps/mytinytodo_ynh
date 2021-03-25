@@ -99,31 +99,26 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 # MODIFY A CONFIG FILE
 #=================================================
 
-# # verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
-# # la nom de la base et l'utilisateur de la base on la même valeur
-# # mise en place de la config de la base au niveau de myTinyTodo
-
-# cp ../conf/config.php $final_path/db/config.php
-
-# ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/db/config.php"
-# ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/db/config.php"
-# ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/db/config.php"
+# verifier la valeur de $final_path pour moi il y a /var/www/mytinytodo
+# la nom de la base et l'utilisateur de la base on la même valeur
+# mise en place de la config de la base au niveau de myTinyTodo
 
 ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
-# #=================================================
-# # SECURE FILES AND DIRECTORIES
-# #=================================================
-
-# # Set permissions to app files
-chmod 775 $final_path/db/config.php
-chmod 775 $final_path/tmp/sessions
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
 
 # je donne les droits a myTinyTodo sur /var/www/mytinyto/*
-chown -R $app: $final_path
+chown -R $app:$app $final_path
+chmod -R o-rwx $final_path
+
+# Set permissions to app files
+chmod 775 $final_path/db/config.php
+chmod 775 $final_path/tmp/sessions
 
 #=================================================
 # SETUP SSOWAT

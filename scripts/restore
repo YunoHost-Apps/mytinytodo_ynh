@@ -67,7 +67,9 @@ ynh_system_user_create --username=$app
 # RESTORE USER RIGHTS
 #=================================================
 
-chown -R $app: $final_path
+chown -R $app:$app $final_path
+chmod -R o-rwx $final_path
+
 chmod 775 $final_path/db/config.php
 chmod 775 $final_path/tmp/sessions
 

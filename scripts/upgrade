@@ -125,9 +125,11 @@ ynh_add_fpm_config
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
+chown -R $app:$app $final_path
+chmod -R o-rwx $final_path
+
 chmod 775 $final_path/db/config.php
 chmod 755 $final_path/tmp/sessions
-chown -R $app: $final_path
 
 #=================================================
 # RELOAD NGINX
