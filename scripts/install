@@ -45,7 +45,6 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_app_setting_set --app=$app --key=language --value=$language
 
 #=================================================
@@ -104,12 +103,14 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 # # la nom de la base et l'utilisateur de la base on la même valeur
 # # mise en place de la config de la base au niveau de myTinyTodo
 
-cp ../conf/config.php $final_path/db/config.php
+# cp ../conf/config.php $final_path/db/config.php
 
-ynh_replace_string --match_string="__LANGUAGE__"    --replace_string="$language" --target_file="$final_path/db/config.php"
-ynh_replace_string --match_string="__DB_NAME__"     --replace_string="$db_name"  --target_file="$final_path/db/config.php"
-ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd"   --target_file="$final_path/db/config.php"
- 
+# ynh_replace_string --match_string="__LANGUAGE__" --replace_string="$language" --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/db/config.php"
+# ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/db/config.php"
+
+ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
@@ -127,12 +128,12 @@ chown -R $app: $final_path
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..." --weight=1
+ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	ynh_permission_update --permission "main" --add "visitors"
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================
