@@ -11,7 +11,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 ## Overview
 Simple way to manage your todo list in AJAX style. Written in PHP and jQuery. Data stored in MySQL database.
 
-**Shipped version:** 1.6.3
+**Shipped version:** 1.6.4
 
 ## Screenshots
 
@@ -39,8 +39,8 @@ Simple way to manage your todo list in AJAX style. Written in PHP and jQuery. Da
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/mytinytodo%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/mytinytodo%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/mytinytodo/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/mytinytodo/)
 
 ## Limitations
 

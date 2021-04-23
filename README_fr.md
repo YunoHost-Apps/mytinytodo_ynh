@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Vue d'ensemble
 Un moyen simple de gérer votre liste de tâches dans le style AJAX. Écrit en PHP et jQuery. Données stockées dans la base de données MySQL.
 
-**Version incluse :** 1.6.3
+**Version incluse :** 1.6.4
 
 ## Captures d'écran
 
@@ -39,8 +39,8 @@ Comment configurer cette application : via le panneau d'administration.
 
 #### Architectures supportées
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/mytinytodo%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/mytinytodo%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/mytinytodo/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/mytinytodo/)
 
 ## Limitations
 

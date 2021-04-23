@@ -1,5 +1,5 @@
-SOURCE_URL=https://www.mytinytodo.net/latest.php
-SOURCE_SUM=8bb32d48c96091403bfc9a54f574f92c87e018544ddb4c526b45a5d1a67a9831
+SOURCE_URL=https://github.com/maxpozdeev/mytinytodo/releases/download/v1.6.4/mytinytodo-v1.6.4.zip
+SOURCE_SUM=10e9a696bf2d05852393866c255ecf00f16e704783bd85763a65d820861eacc3
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
