@@ -6,7 +6,7 @@
 *[Lire ce readme en français.](./README_fr.md)*
 
 > *This package allows you to install myTinyTodo quickly and simply on a YunoHost server.  
-If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
+If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
 
 ## Overview
 Simple way to manage your todo list in AJAX style. Written in PHP and jQuery. Data stored in MySQL database.
