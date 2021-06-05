@@ -12,6 +12,7 @@
       setup_private=1
       setup_public=1
       upgrade=1
+      upgrade=1   from_commit=b598d7235944070a438db49710d141b7ece25669
       backup_restore=1
       multi_instance=0
       change_url=1
@@ -19,6 +20,6 @@
 Email=
 Notification=none
 ;;; Upgrade options
-   ; commit=CommitHash
-      name=Name and date of the commit.
+   ; commit=b598d7235944070a438db49710d141b7ece25669
+      name= Upgrade to version 1.6.4 (#14)
       manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
