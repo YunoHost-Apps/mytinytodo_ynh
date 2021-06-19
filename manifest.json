@@ -6,15 +6,21 @@
         "en": "Open source to-do list script.",
         "fr": "Gestionnaire de todo list (GTD)."
     },
-    "url": "http://www.mytinytodo.net/",
-    "license": "GPL-2.0",
     "version": "1.6.4~ynh1",
+    "url": "http://www.mytinytodo.net/",
+    "upstream": {
+        "license": "GPL-2.0",
+        "website": "http://www.mytinytodo.net/",
+        "demo": "https://demo.example.com",
+        "admindoc": "https://www.mytinytodo.net/faq.php"
+    },
+    "license": "GPL-2.0",
     "maintainer": {
         "name": "plabuse",
         "email": "pierre.levasseur@free.fr"
     },
     "requirements": {
-        "yunohost": ">= 4.1.7"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": false,
     "services": [

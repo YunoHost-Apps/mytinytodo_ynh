@@ -1,62 +1,32 @@
 # myTinyTodo pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/mytinytodo.svg)](https://dash.yunohost.org/appci/app/mytinytodo) ![](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)  
-[![Installer myTinyTodo pour YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
+[![Installer myTinyTodo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
-*[Read this readme in english.](./README.md)* 
+*[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer myTinyTodo rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install) pour apprendre comment l'installer.*
+> *Ce package vous permet d'installer myTinyTodo rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
 ## Vue d'ensemble
-Un moyen simple de gérer votre liste de tâches dans le style AJAX. Écrit en PHP et jQuery. Données stockées dans la base de données MySQL.
 
-**Version incluse :** 1.6.4
+Gestionnaire de todo list (GTD).
+
+**Version incluse :** 1.6.4~ynh1
+
+**Démo :** https://demo.example.com
 
 ## Captures d'écran
 
-![](http://www.mytinytodo.net/images/shot-v14b1.png)
+![](./doc/screenshots/shot-v14b1.png)
 
-## Démo
+## Documentations et ressources
 
-* [Démo officielle](http://www.mytinytodo.net/demo/)
-
-## Configuration
-
-Comment configurer cette application : via le panneau d'administration.
-
-## Documentation
-
- * Documentation officielle : https://www.mytinytodo.net/faq.php
- * Documentation YunoHost : Si une documentation spécifique est nécessaire, n'hésitez pas à contribuer.
-
-## Caractéristiques spécifiques YunoHost
-
-#### Support multi-utilisateur
-
-* L'authentification LDAP et HTTP est-elle prise en charge ? **Non**
-* L'application peut-elle être utilisée par plusieurs utilisateurs ? **Non**
-
-#### Architectures supportées
-
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/mytinytodo.svg)](https://ci-apps-arm.yunohost.org/ci/apps/mytinytodo/)
-
-## Limitations
-
-* Limitations connues.
-
-## Informations additionnelles
-
-* Autres informations que vous souhaitez ajouter sur cette application.
-
-## Liens
-
- * Signaler un bug : https://github.com/YunoHost-Apps/mytinytodo_ynh/issues
- * Site de l'application : http://www.mytinytodo.net/
- * Site web YunoHost : https://yunohost.org/
-
----
+* Site officiel de l'app : http://www.mytinytodo.net/
+* Documentation officielle de l'admin : https://www.mytinytodo.net/faq.php
+* Documentation YunoHost pour cette app : https://yunohost.org/app_mytinytodo
+* Signaler un bug : https://github.com/YunoHost-Apps/mytinytodo_ynh/issues
 
 ## Informations pour les développeurs
 
@@ -68,3 +38,5 @@ sudo yunohost app install https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/t
 ou
 sudo yunohost app upgrade mytinytodo -u https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps
