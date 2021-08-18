@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/maxpozdeev/mytinytodo/releases/download/v1.6.4/mytinytodo-v1.6.4.zip
-SOURCE_SUM=10e9a696bf2d05852393866c255ecf00f16e704783bd85763a65d820861eacc3
+SOURCE_URL=https://github.com/maxpozdeev/mytinytodo/releases/download/v1.6.5/mytinytodo-v1.6.5.zip
+SOURCE_SUM=5a4edb2dc75f89e6aedf85f174c9d06a30b8e1fd4dbec317bcad15213eeb7223
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true

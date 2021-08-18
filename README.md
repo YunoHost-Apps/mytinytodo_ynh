@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Open source to-do list script.
 
-**Shipped version:** 1.6.4~ynh1
+**Shipped version:** 1.6.5~ynh1
 
 **Demo:** https://demo.example.com
 
