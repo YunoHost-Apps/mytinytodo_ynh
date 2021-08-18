@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Gestionnaire de todo list (GTD).
 
-**Version incluse :** 1.6.4~ynh1
+**Version incluse :** 1.6.5~ynh1
 
 **Démo :** https://demo.example.com
 
