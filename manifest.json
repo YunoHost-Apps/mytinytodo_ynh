@@ -32,8 +32,7 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "domaine.org"
+                "type": "domain"
             },
             {
                 "name": "path",
