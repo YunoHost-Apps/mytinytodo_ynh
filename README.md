@@ -19,7 +19,7 @@ Open source to-do list script
 
 **Shipped version:** 1.6.7~ynh1
 
-**Demo:** https://www.mytinytodo.net/demo/#list/1
+**Demo:** https://www.mytinytodo.net/demo/
 
 ## Screenshots
 

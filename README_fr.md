@@ -15,7 +15,7 @@ Gestionnaire de todo list
 
 **Version incluse :** 1.6.7~ynh1
 
-**Démo :** https://www.mytinytodo.net/demo/#list/1
+**Démo :** https://www.mytinytodo.net/demo/
 
 ## Captures d'écran
 
