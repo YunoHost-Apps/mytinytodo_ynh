@@ -15,11 +15,11 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Open source to-do list script.
+Open source to-do list script
 
-**Shipped version:** 1.6.5~ynh1
+**Shipped version:** 1.6.7~ynh1
 
-**Demo:** https://demo.example.com
+**Demo:** https://www.mytinytodo.net/demo/#list/1
 
 ## Screenshots
 
@@ -29,6 +29,7 @@ Open source to-do list script.
 
 * Official app website: http://www.mytinytodo.net/
 * Official admin documentation: https://www.mytinytodo.net/faq.php
+* Upstream app code repository: https://github.com/maxpozdeev/mytinytodo
 * YunoHost documentation for this app: https://yunohost.org/app_mytinytodo
 * Report a bug: https://github.com/YunoHost-Apps/mytinytodo_ynh/issues
 
