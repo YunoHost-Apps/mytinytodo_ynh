@@ -116,9 +116,6 @@ ynh_secure_remove --file="$final_path/db/todolist.db"
 chmod 775 $final_path/db/config.php
 chmod 775 $final_path/tmp/sessions
 
-# je donne les droits a myTinyTodo sur /var/www/mytinyto/*
-#chown -R $app: $final_path
-
 #=================================================
 # SETUP SSOWAT
 #=================================================

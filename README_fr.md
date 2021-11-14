@@ -11,11 +11,11 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Gestionnaire de todo list (GTD).
+Gestionnaire de todo list
 
-**Version incluse :** 1.6.5~ynh1
+**Version incluse :** 1.6.7~ynh1
 
-**Démo :** https://demo.example.com
+**Démo :** https://www.mytinytodo.net/demo/
 
 ## Captures d'écran
 
@@ -25,6 +25,7 @@ Gestionnaire de todo list (GTD).
 
 * Site officiel de l'app : http://www.mytinytodo.net/
 * Documentation officielle de l'admin : https://www.mytinytodo.net/faq.php
+* Dépôt de code officiel de l'app : https://github.com/maxpozdeev/mytinytodo
 * Documentation YunoHost pour cette app : https://yunohost.org/app_mytinytodo
 * Signaler un bug : https://github.com/YunoHost-Apps/mytinytodo_ynh/issues
 
