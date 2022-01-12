@@ -6,7 +6,7 @@
         "en": "Open source to-do list script",
         "fr": "Gestionnaire de todo list"
     },
-    "version": "1.6.7~ynh1",
+    "version": "1.6.8~ynh1",
     "url": "http://www.mytinytodo.net/",
     "upstream": {
         "license": "GPL-2.0",
@@ -21,7 +21,7 @@
         "email": "pierre.levasseur@free.fr"
     },
     "requirements": {
-        "yunohost": ">= 4.2.4"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": false,
     "services": [
