@@ -30,7 +30,7 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
@@ -48,16 +48,23 @@
                     "en": "If enabled, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin.",
                     "fr": "Si cette case est cochée, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
-                "default": true 
+                "default": true
             },
             {
                 "name": "language",
                 "type": "string",
                 "ask": {
-                     "en": "Choose the application language",
-                     "fr": "Choisissez la langue de l'application"
+                    "en": "Choose the application language",
+                    "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["ar", "de", "en", "fr", "ru", "zh-cn"],
+                "choices": [
+                    "ar",
+                    "de",
+                    "en",
+                    "fr",
+                    "ru",
+                    "zh-cn"
+                ],
                 "default": "fr"
             }
         ]
