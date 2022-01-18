@@ -144,7 +144,7 @@ ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_
 # RESTORE USER RIGHTS
 #=================================================
 
-ynh_secure_remove --file="$final_path/setup.php"
+#ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
 #chmod 775 $final_path/db/config.php
