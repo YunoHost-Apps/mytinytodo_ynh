@@ -105,7 +105,7 @@ then
 	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db"
+	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
 
 	# Copy the admin saved settings from tmp directory to final path	
 	#cp -ar "$tmpdir/db" "$final_path/db" 
