@@ -3,6 +3,9 @@
 # Configuration goes here
 $config = array();
 
+# Set a title for MyTinyTodo
+$config['title'] = '__TITLE__';
+
 # Database type: sqlite or mysql
 $config['db'] = 'mysql';
 

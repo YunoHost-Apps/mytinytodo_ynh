@@ -42,6 +42,15 @@
                 "default": "/mytinytodo"
             },
             {
+                "name": "title",
+                "type": "string",
+                "ask": {
+                     "en": "Choose a title for your todo list",
+                     "fr": "Choisissez titre pour votre todo liste"
+                },
+                "default": "MyTinyTodo"
+            },
+            {
                 "name": "is_public",
                 "type": "boolean",
                 "help": {

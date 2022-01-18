@@ -30,6 +30,7 @@ fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
 fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
 
 set_password=$(ynh_app_setting_get --app=$app --key=set_password)
+title=$(ynh_app_setting_get --app=$app --key=title)
 
 #=================================================
 # CHECK VERSION
@@ -59,6 +60,11 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 if [ -z "$set_password" ]; then
 	set_password=""
 	ynh_app_setting_set --app=$app --key=set_password --value=$set_password
+fi
+
+if [ -z "$title" ]; then
+	title="MytinyTodo"
+	ynh_app_setting_set --app=$app --key=title --value=$title
 fi
 
 # If fpm_footprint doesn't exist, create it
