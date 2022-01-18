@@ -103,10 +103,10 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
 	# Create a temporary directory
-	#tmpdir="$(mktemp -d)"
+	tmpdir="$(mktemp -d)"
 
 	# Backup the config file in the temp dir
-	#cp -ar "$final_path/db" "$tmpdir/db"
+	cp -ar "$final_path/db" "$tmpdir/db"
 
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
@@ -115,11 +115,11 @@ then
 	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
 
 	# Copy the admin saved settings from tmp directory to final path	
-	#cp -ar "$tmpdir/db" "$final_path/db" 
+	cp -ar "$tmpdir/db" "$final_path/db" 
 
 	# Remove the tmp directory securely
-	#ynh_secure_remove --file="$tmpdir"
-	ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+	ynh_secure_remove --file="$tmpdir"
+	#ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 fi
 
 chmod 750 "$final_path"
