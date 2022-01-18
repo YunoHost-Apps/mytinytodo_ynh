@@ -10,7 +10,7 @@ name = "MyTinyTodo configuration"
         ask = "Set password"
         type = "password"
         help = "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist"
-        bind = "password:__FINALPATH/db/config.php"
+        bind = "password:__FINALPATH__/db/config.php"
 
     [main.php_fpm_config]
     name = "PHP-FPM configuration"
