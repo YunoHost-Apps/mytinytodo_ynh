@@ -9,7 +9,7 @@ $config['db'] = 'mysql';
 # Specify these settings if you selected above to use Mysql
 $config['mysql.host'] = "localhost";
 $config['mysql.db'] = "__DB_NAME__";
-$config['mysql.user'] = "__DB_NAME__";
+$config['mysql.user'] = "__DB_USER__";
 $config['mysql.password'] = "__DB_PWD__"; 
 
 # Tables prefix

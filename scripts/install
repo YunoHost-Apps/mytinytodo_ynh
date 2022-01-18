@@ -66,7 +66,7 @@ ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 # # # Charge les commandes sql communes à tous les scripts.
 # # # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
-ynh_mysql_connect_as --user=$db_name --password=$db_pwd --database=$db_name < ../conf/sql/mytinytodo.sql
+ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
 # CREATE DEDICATED USER
@@ -103,8 +103,7 @@ ynh_add_nginx_config
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+ynh_add_fpm_config --usage=low --footprint=low
 
 #=================================================
 # MODIFY A CONFIG FILE
