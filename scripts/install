@@ -30,7 +30,7 @@ title=$YNH_APP_ARG_TITLE
 
 app=$YNH_APP_INSTANCE_NAME
 
-set_password=""
+set_password="$YNH_APP_ARG_SET_PASSWORD"
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
