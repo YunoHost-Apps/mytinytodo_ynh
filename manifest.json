@@ -57,8 +57,7 @@
                 "ask": {
                      "en": "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist",
                      "fr": "Spécifiez le mot de passe ici pour protéger vos tâches, ou laissez vide pour que tout le monde puisse lire/écrire votre liste de tâche."
-                },
-                "default": ""
+                }
             },
             {
                 "name": "is_public",
