@@ -57,7 +57,7 @@
                      "en": "Choose the application language",
                      "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["ar", "de", "en", "fr", "ru", "zh-cn"],
+                "choices": ["ar", "de", "en", "fr", "it", "nl", "pt-pt", "ru", "uk", "zh-cn"],
                 "default": "fr"
             }
         ]
