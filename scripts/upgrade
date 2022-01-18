@@ -119,7 +119,7 @@ then
 
 	# Remove the tmp directory securely
 	#nh_secure_remove --file="$tmpdir"
-	ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+	ynh_exec_warn_less ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 fi
 
 chmod 750 "$final_path"
