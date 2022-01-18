@@ -26,7 +26,7 @@ $config['lang'] = "__LANGUAGE__";
 
 # Specify password here to protect your tasks from modification,
 #  or leave empty that everyone could read/write todolist
-$config['password'] = "";
+$config['password'] = "__SET_PASSWORD__";
 
 # To disable smart syntax uncomment the line below
 #$config['smartsyntax'] = 0;

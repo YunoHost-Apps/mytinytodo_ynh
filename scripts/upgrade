@@ -29,6 +29,8 @@ timezone="$(cat /etc/timezone)"
 fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
 fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
 
+set_password=$(ynh_app_setting_get --app=$app --key=set_password)
+
 #=================================================
 # CHECK VERSION
 #=================================================
@@ -53,6 +55,11 @@ ynh_abort_if_errors
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+if [ -z "$set_password" ]; then
+	set_password=""
+	ynh_app_setting_set --app=$app --key=set_password --value=$set_password
+fi
 
 # If fpm_footprint doesn't exist, create it
 if [ -z "$timezone" ]; then

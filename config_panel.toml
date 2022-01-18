@@ -3,6 +3,15 @@ version = "1.0"
 [main]
 name = "MyTinyTodo configuration"
 
+    [main.config]
+    name = "Configuration Options"
+
+        [main.config.set_password]
+        ask = "Set password"
+        type = "password"
+        help = "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist"
+        bind = "password:__FINALPATH/db/config.php"
+
     [main.php_fpm_config]
     name = "PHP-FPM configuration"
 
