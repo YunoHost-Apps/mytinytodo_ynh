@@ -48,7 +48,7 @@
                      "en": "Choose a title for your todo list",
                      "fr": "Choisissez le titre pour votre liste de tâches"
                 },
-                "default": "MyTinyTodo"
+                "default": "myTinyTodo"
             },
             {
                 "name": "set_password",
