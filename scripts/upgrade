@@ -109,17 +109,17 @@ then
 	#cp -ar "$final_path/db" "$tmpdir/db"
 
 	# Remove the app directory securely
-	ynh_secure_remove --file="$final_path"
+	#ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
+	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/db/config.php"
 
 	# Copy the admin saved settings from tmp directory to final path	
 	#cp -ar "$tmpdir/db" "$final_path/db" 
 
 	# Remove the tmp directory securely
 	#ynh_secure_remove --file="$tmpdir"
-	ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+	#ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 fi
 
 chmod 750 "$final_path"
@@ -156,7 +156,7 @@ ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
-#chmod 775 $final_path/db/config.php
+chmod 600 $final_path/db/config.php
 chmod 755 $final_path/tmp/sessions
 
 #=================================================
