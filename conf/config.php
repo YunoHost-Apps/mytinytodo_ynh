@@ -32,7 +32,7 @@ $config['password'] = "";
 #$config['smartsyntax'] = 0;
 
 # Default Time zone
-$config['timezone'] = 'UTC';
+$config['timezone'] = '__TIMEZONE__';
 
 # To disable auto adding selected tag  comment out the line below or set value to 0
 $config['autotag'] = 1;
