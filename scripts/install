@@ -66,8 +66,7 @@ db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
-# # # Charge les commandes sql communes à tous les scripts.
-# # # mysql --debug-check -u $db_user -p$db_pwd $db_user < ../conf/sql/common.sql
+# Charge les commandes sql communes à tous les scripts.
 ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
@@ -110,19 +109,20 @@ ynh_add_fpm_config --usage=low --footprint=low
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 
+chmod 600 "$final_path/db/config.php"
+chown $app:$app "$final_path/db/config.php"
+chmod 775 "$final_path/tmp/sessions"
+
+#=================================================
+# REMOVE UNWANTED FILES
+#=================================================
+
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
-
-# #=================================================
-# # SECURE FILES AND DIRECTORIES
-# #=================================================
-
-# # Set permissions to app files
-chmod 775 $final_path/db/config.php
-chmod 775 $final_path/tmp/sessions
 
 #=================================================
 # SETUP SSOWAT
