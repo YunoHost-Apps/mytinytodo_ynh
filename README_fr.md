@@ -11,7 +11,21 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Gestionnaire de todo list
+### Features
+
+- Multiple lists
+- Task notes
+- Tags (and tag cloud)
+- Due dates
+- Priority (-1, 0, +1, +2)
+- Different sortings including sort by drag-and-drop
+- Search
+- Password protection
+- Smart syntax improves creation of tasks
+      (usage: /priority/ Task /tags/)
+- Print-friendly CSS
+- tyle for mobiles devices 
+
 
 **Version incluse :** 1.6.8~ynh1
 
