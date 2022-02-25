@@ -26,9 +26,6 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$YNH_PHP_VERSION
 timezone="$(cat /etc/timezone)"
 
-fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
-fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
-
 set_password=$(ynh_app_setting_get --app=$app --key=set_password)
 title=$(ynh_app_setting_get --app=$app --key=title)
 
@@ -73,18 +70,6 @@ if [ -z "$timezone" ]; then
 	ynh_app_setting_set --app=$app --key=timezone --value=$timezone
 fi
 
-# If fpm_footprint doesn't exist, create it
-if [ -z "$fpm_footprint" ]; then
-	fpm_footprint=low
-	ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
-fi
-
-# If fpm_usage doesn't exist, create it
-if [ -z "$fpm_usage" ]; then
-	fpm_usage=low
-	ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
-fi
-
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -108,20 +93,11 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
-	# Create a temporary directory
-	#tmpdir="$(mktemp -d)"
-
-	# Backup the config file in the temp dir
-	#cp -ar "$final_path/db" "$tmpdir/db"
-
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
-
-	# Copy the admin saved settings from tmp directory to final path	
-	#cp -ar "$tmpdir/db" "$final_path/db" 
 
 	# Remove the tmp directory securely
 	#nh_secure_remove --file="$tmpdir"
@@ -153,7 +129,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_footprint
+ynh_add_fpm_config
 
 #=================================================
 # RESTORE USER RIGHTS
