@@ -51,7 +51,7 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=language --value=$language
-ynh_app_setting_set --app=$app --key=set_password --value=$set_password
+ynh_app_setting_set --app=$app --key=set_password --value="$set_password"
 ynh_app_setting_set --app=$app --key=title --value=$title
 
 #=================================================
@@ -109,7 +109,7 @@ ynh_add_nginx_config
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=low --footprint=low
+ynh_add_fpm_config
 
 #=================================================
 # MODIFY A CONFIG FILE
