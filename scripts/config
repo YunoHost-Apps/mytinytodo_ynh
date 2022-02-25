@@ -57,7 +57,7 @@ set__fpm_footprint() {
 }
 
 set__free_footprint() {
-    if [ "$fpm_footprint" = "specific" ]
+    if [ "$fpm_footprint" == "specific" ]
     then
         ynh_app_setting_set --app=$app --key=fpm_footprint --value="$free_footprint"
     fi
