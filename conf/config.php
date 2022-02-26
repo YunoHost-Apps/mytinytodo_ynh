@@ -3,13 +3,16 @@
 # Configuration goes here
 $config = array();
 
+# Set a title for MyTinyTodo
+$config['title'] = '__TITLE__';
+
 # Database type: sqlite or mysql
 $config['db'] = 'mysql';
 
 # Specify these settings if you selected above to use Mysql
 $config['mysql.host'] = "localhost";
 $config['mysql.db'] = "__DB_NAME__";
-$config['mysql.user'] = "__DB_NAME__";
+$config['mysql.user'] = "__DB_USER__";
 $config['mysql.password'] = "__DB_PWD__"; 
 
 # Tables prefix
@@ -26,13 +29,13 @@ $config['lang'] = "__LANGUAGE__";
 
 # Specify password here to protect your tasks from modification,
 #  or leave empty that everyone could read/write todolist
-$config['password'] = "";
+$config['password'] = "__SET_PASSWORD__";
 
 # To disable smart syntax uncomment the line below
 #$config['smartsyntax'] = 0;
 
 # Default Time zone
-$config['timezone'] = 'UTC';
+$config['timezone'] = '__TIMEZONE__';
 
 # To disable auto adding selected tag  comment out the line below or set value to 0
 $config['autotag'] = 1;
