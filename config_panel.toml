@@ -1,7 +1,7 @@
 version = "1.0"
 
 [main]
-name = "MyTinyTodo configuration"
+name = "myTinyTodo configuration"
 
     [main.config]
     name = "Configuration Options"
