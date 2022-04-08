@@ -22,7 +22,12 @@ language=$(ynh_app_setting_get --app=$app --key=language)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+phpversion=$YNH_PHP_VERSION
+timezone="$(cat /etc/timezone)"
+
+set_password=$(ynh_app_setting_get --app=$app --key=set_password)
+title=$(ynh_app_setting_get --app=$app --key=title)
 
 #=================================================
 # CHECK VERSION
@@ -49,6 +54,22 @@ ynh_abort_if_errors
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
+if [ -z "$set_password" ]; then
+	set_password=""
+	ynh_app_setting_set --app=$app --key=set_password --value=$set_password
+fi
+
+if [ -z "$title" ]; then
+	title="MytinyTodo"
+	ynh_app_setting_set --app=$app --key=title --value=$title
+fi
+
+# If fpm_footprint doesn't exist, create it
+if [ -z "$timezone" ]; then
+	timezone="$(cat /etc/timezone)"
+	ynh_app_setting_set --app=$app --key=timezone --value=$timezone
+fi
+
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -72,23 +93,15 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
-	# Create a temporary directory
-	tmpdir="$(mktemp -d)"
-
-	# Backup the config file in the temp dir
-	cp -ar "$final_path/db" "$tmpdir/db"
-
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
-
-	# Copy the admin saved settings from tmp directory to final path	
-	cp -ar "$tmpdir/db" "$final_path/db" 
+	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
 
 	# Remove the tmp directory securely
-	ynh_secure_remove --file="$tmpdir"
+	#nh_secure_remove --file="$tmpdir"
+	ynh_exec_warn_less ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
 fi
 
 chmod 750 "$final_path"
@@ -119,24 +132,13 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
 ynh_add_fpm_config
 
 #=================================================
-# RESTORE OF THE SQL BDD
-#=================================================
-
-# db_pwd=$(ynh_app_setting_get $app mysqlpwd)
-# # il ne faut recreer la base, c'est une maj
-# #ynh_mysql_create_db $db_name $db_name $db_pwd
-
-# # il faut prendre le script de mise a jour
-# ynh_mysql_connect_as $db_name $db_pwd $db_name < $final_path/db/update.sql
-
-#=================================================
 # RESTORE USER RIGHTS
 #=================================================
 
 ynh_secure_remove --file="$final_path/setup.php"
 ynh_secure_remove --file="$final_path/db/todolist.db"
 
-chmod 775 $final_path/db/config.php
+chmod 600 $final_path/db/config.php
 chmod 755 $final_path/tmp/sessions
 
 #=================================================
