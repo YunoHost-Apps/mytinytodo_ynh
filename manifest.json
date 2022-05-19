@@ -6,7 +6,7 @@
         "en": "Open source to-do list script",
         "fr": "Gestionnaire de todo list"
     },
-    "version": "1.6.8~ynh1",
+    "version": "1.6.10~ynh1",
     "url": "http://www.mytinytodo.net/",
     "upstream": {
         "license": "GPL-2.0",

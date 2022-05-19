@@ -8,7 +8,7 @@
 # The YunoHost-Apps organisation offers a template Action to run this script periodically
 # Since each app is different, maintainers can adapt its contents so as to perform
 # automatic actions when a new upstream release is detected.
-exit 1
+#exit 1
 
 #=================================================
 # FETCHING LATEST RELEASE AND ITS ASSETS
