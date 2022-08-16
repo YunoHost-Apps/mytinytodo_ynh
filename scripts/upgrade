@@ -93,15 +93,8 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
-	# Remove the app directory securely
-	ynh_secure_remove --file="$final_path"
-
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/db/config.php"
-
-	# Remove the tmp directory securely
-	#nh_secure_remove --file="$tmpdir"
-	ynh_exec_warn_less ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+	ynh_setup_source --dest_dir="$final_path" --keep="db/config.php"
 fi
 
 chmod 750 "$final_path"
