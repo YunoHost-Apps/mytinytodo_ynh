@@ -6,14 +6,15 @@
         "en": "Open source to-do list script",
         "fr": "Gestionnaire de todo list"
     },
-    "version": "1.6.10~ynh1",
+    "version": "1.6.10~ynh2",
     "url": "http://www.mytinytodo.net/",
     "upstream": {
         "license": "GPL-2.0",
         "website": "http://www.mytinytodo.net/",
         "demo": "https://www.mytinytodo.net/demo/",
         "admindoc": "https://www.mytinytodo.net/faq.php",
-        "code": "https://github.com/maxpozdeev/mytinytodo"
+        "code": "https://github.com/maxpozdeev/mytinytodo",
+        "cpe": "cpe:2.3:a:mytinytodo:mytinytodo"
     },
     "license": "GPL-2.0",
     "maintainer": {
@@ -21,7 +22,7 @@
         "email": "pierre.levasseur@free.fr"
     },
     "requirements": {
-        "yunohost": ">= 4.3.0"
+        "yunohost": ">= 11.0.9"
     },
     "multi_instance": false,
     "services": [
@@ -30,7 +31,7 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
@@ -45,8 +46,8 @@
                 "name": "title",
                 "type": "string",
                 "ask": {
-                     "en": "Choose a title for your todo list",
-                     "fr": "Choisissez le titre pour votre liste de tâches"
+                    "en": "Choose a title for your todo list",
+                    "fr": "Choisissez le titre pour votre liste de tâches"
                 },
                 "default": "myTinyTodo"
             },
@@ -55,8 +56,8 @@
                 "type": "password",
                 "optional": true,
                 "ask": {
-                     "en": "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist",
-                     "fr": "Spécifiez le mot de passe ici pour protéger vos tâches, ou laissez vide pour que tout le monde puisse lire/écrire votre liste de tâche."
+                    "en": "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist",
+                    "fr": "Spécifiez le mot de passe ici pour protéger vos tâches, ou laissez vide pour que tout le monde puisse lire/écrire votre liste de tâche."
                 }
             },
             {
@@ -66,16 +67,27 @@
                     "en": "If enabled, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin.",
                     "fr": "Si cette case est cochée, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
-                "default": true 
+                "default": true
             },
             {
                 "name": "language",
                 "type": "string",
                 "ask": {
-                     "en": "Choose the application language",
-                     "fr": "Choisissez la langue de l'application"
+                    "en": "Choose the application language",
+                    "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["ar", "de", "en", "fr", "it", "nl", "pt-pt", "ru", "uk", "zh-cn"],
+                "choices": [
+                    "ar",
+                    "de",
+                    "en",
+                    "fr",
+                    "it",
+                    "nl",
+                    "pt-pt",
+                    "ru",
+                    "uk",
+                    "zh-cn"
+                ],
                 "default": "fr"
             }
         ]
