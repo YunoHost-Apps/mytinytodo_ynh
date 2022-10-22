@@ -31,8 +31,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 - tyle for mobiles devices 
 
 
-**Version incluse :** 1.6.10~ynh2
-
+**Version incluse :** 1.7.0~ynh1
 
 **Démo :** https://www.mytinytodo.net/demo/
 
