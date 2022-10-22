@@ -120,7 +120,7 @@ ynh_add_config --template="../conf/config.php" --destination="$final_path/db/con
 
 chmod 600 "$final_path/db/config.php"
 chown $app:$app "$final_path/db/config.php"
-chmod 775 "$final_path/tmp/sessions"
+#chmod 775 "$final_path/tmp/sessions"
 
 #=================================================
 # REMOVE UNWANTED FILES
