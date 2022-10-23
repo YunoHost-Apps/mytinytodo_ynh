@@ -10,10 +10,10 @@ name = "myTinyTodo configuration"
         ask = "Set title"
         type = "string"
         help = "Specify a title for your todolist."
-        bind = "title:__FINALPATH__/db/config.php"
+        bind = "title:__FINALPATH__/config.php"
 
         [main.config.set_password]
         ask = "Set password"
         type = "password"
         help = "Specify password here to protect your tasks from modification, or leave empty that everyone could read/write todolist."
-        bind = "password:__FINALPATH__/db/config.php"
+        bind = "password:__FINALPATH__/config.php"

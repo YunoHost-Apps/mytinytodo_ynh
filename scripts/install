@@ -125,7 +125,7 @@ chown $app:$app "$final_path/config.php"
 # REMOVE UNWANTED FILES
 #=================================================
 
-#ynh_secure_remove --file="$final_path/setup.php"
+ynh_secure_remove --file="$final_path/setup.php"
 
 #=================================================
 # SETUP SSOWAT
