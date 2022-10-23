@@ -116,10 +116,10 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
 
-chmod 600 "$final_path/db/config.php"
-chown $app:$app "$final_path/db/config.php"
+chmod 600 "$final_path/config.php"
+chown $app:$app "$final_path/config.php"
 #chmod 775 "$final_path/tmp/sessions"
 
 #=================================================
@@ -127,7 +127,6 @@ chown $app:$app "$final_path/db/config.php"
 #=================================================
 
 ynh_secure_remove --file="$final_path/setup.php"
-ynh_secure_remove --file="$final_path/db/todolist.db"
 
 #=================================================
 # SETUP SSOWAT
