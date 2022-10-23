@@ -120,13 +120,12 @@ ynh_add_config --template="../conf/config.php" --destination="$final_path/config
 
 chmod 600 "$final_path/config.php"
 chown $app:$app "$final_path/config.php"
-#chmod 775 "$final_path/tmp/sessions"
 
 #=================================================
 # REMOVE UNWANTED FILES
 #=================================================
 
-ynh_secure_remove --file="$final_path/setup.php"
+#ynh_secure_remove --file="$final_path/setup.php"
 
 #=================================================
 # SETUP SSOWAT
