@@ -18,16 +18,11 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
-language=$(ynh_app_setting_get --app=$app --key=language)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
-timezone="$(cat /etc/timezone)"
-
-set_password=$(ynh_app_setting_get --app=$app --key=set_password)
-title=$(ynh_app_setting_get --app=$app --key=title)
 
 #=================================================
 # CHECK VERSION
@@ -53,22 +48,6 @@ ynh_abort_if_errors
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
-
-if [ -z "$set_password" ]; then
-	set_password=""
-	ynh_app_setting_set --app=$app --key=set_password --value=$set_password
-fi
-
-if [ -z "$title" ]; then
-	title="MytinyTodo"
-	ynh_app_setting_set --app=$app --key=title --value=$title
-fi
-
-# If fpm_footprint doesn't exist, create it
-if [ -z "$timezone" ]; then
-	timezone="$(cat /etc/timezone)"
-	ynh_app_setting_set --app=$app --key=timezone --value=$timezone
-fi
 
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
