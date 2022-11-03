@@ -73,7 +73,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="db"
+	ynh_setup_source --dest_dir="$final_path" --keep="db config.php"
 fi
 
 chmod 750 "$final_path"
@@ -102,21 +102,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# RESTORE USER RIGHTS
-#=================================================
-#=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
-
-chmod 600 "$final_path/config.php"
-chown $app:$app "$final_path/config.php"
-
-ynh_secure_remove --file="$final_path/setup.php"
 
 #=================================================
 # RELOAD NGINX

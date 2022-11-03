@@ -21,4 +21,4 @@ define("MTT_DB_PREFIX", "");
 // set mysqli if needed
 define("MTT_DB_DRIVER", "mysqli");
 
-define("MTT_SALT", "Put random text here");
+define("MTT_SALT", "__SALT__");
