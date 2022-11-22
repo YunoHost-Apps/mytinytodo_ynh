@@ -103,18 +103,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-
-#=================================================
-# UPDATE CONFIGURATION
-#=================================================
-ynh_script_progression --message="Updating mytinytodo database..." --weight=3
-
-
-(cd "$final_path"
-/usr/bin/php$phpversion -q $final_path/setup.php)
-
-ynh_secure_remove --file="$final_path/setup.php"
-
 #=================================================
 # RELOAD NGINX
 #=================================================
