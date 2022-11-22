@@ -31,8 +31,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 - tyle for mobiles devices 
 
 
-**Shipped version:** 1.6.10~ynh2
-
+**Shipped version:** 1.7.2~ynh1
 
 **Demo:** https://www.mytinytodo.net/demo/
 

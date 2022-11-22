@@ -23,14 +23,9 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 is_public=$YNH_APP_ARG_IS_PUBLIC
-language=$YNH_APP_ARG_LANGUAGE
-timezone="$(cat /etc/timezone)"
-phpversion=$YNH_PHP_VERSION
-title=$YNH_APP_ARG_TITLE
+salt=$(ynh_string_random --length=16)
 
 app=$YNH_APP_INSTANCE_NAME
-
-set_password="$YNH_APP_ARG_SET_PASSWORD"
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -50,9 +45,6 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=language --value=$language
-ynh_app_setting_set --app=$app --key=set_password --value="$set_password"
-ynh_app_setting_set --app=$app --key=title --value=$title
 
 #=================================================
 # INSTALL DEPENDENCIES
@@ -71,7 +63,7 @@ db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
-# Charge les commandes sql communes à tous les scripts.
+# Charge les commandes SQL communes à tous les scripts.
 ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ../conf/sql/mytinytodo.sql
 
 #=================================================
@@ -102,6 +94,7 @@ ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # NGINX CONFIGURATION
@@ -116,18 +109,16 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-ynh_add_config --template="../conf/config.php" --destination="$final_path/db/config.php"
+ynh_add_config --template="../conf/config.php" --destination="$final_path/config.php"
 
-chmod 600 "$final_path/db/config.php"
-chown $app:$app "$final_path/db/config.php"
-chmod 775 "$final_path/tmp/sessions"
+chmod 640 "$final_path/config.php"
+chown $app:$app "$final_path/config.php"
 
 #=================================================
 # REMOVE UNWANTED FILES
 #=================================================
 
 ynh_secure_remove --file="$final_path/setup.php"
-ynh_secure_remove --file="$final_path/db/todolist.db"
 
 #=================================================
 # SETUP SSOWAT
