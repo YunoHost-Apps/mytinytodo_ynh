@@ -18,16 +18,11 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
-language=$(ynh_app_setting_get --app=$app --key=language)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
-timezone="$(cat /etc/timezone)"
-
-set_password=$(ynh_app_setting_get --app=$app --key=set_password)
-title=$(ynh_app_setting_get --app=$app --key=title)
 
 #=================================================
 # CHECK VERSION
@@ -54,22 +49,6 @@ ynh_abort_if_errors
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-if [ -z "$set_password" ]; then
-	set_password=""
-	ynh_app_setting_set --app=$app --key=set_password --value=$set_password
-fi
-
-if [ -z "$title" ]; then
-	title="MytinyTodo"
-	ynh_app_setting_set --app=$app --key=title --value=$title
-fi
-
-# If fpm_footprint doesn't exist, create it
-if [ -z "$timezone" ]; then
-	timezone="$(cat /etc/timezone)"
-	ynh_app_setting_set --app=$app --key=timezone --value=$timezone
-fi
-
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -94,7 +73,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=2
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="db/config.php"
+	ynh_setup_source --dest_dir="$final_path" --keep="db config.php"
 fi
 
 chmod 750 "$final_path"
@@ -123,16 +102,6 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# RESTORE USER RIGHTS
-#=================================================
-
-ynh_secure_remove --file="$final_path/setup.php"
-ynh_secure_remove --file="$final_path/db/todolist.db"
-
-chmod 600 $final_path/db/config.php
-chmod 755 $final_path/tmp/sessions
 
 #=================================================
 # RELOAD NGINX
