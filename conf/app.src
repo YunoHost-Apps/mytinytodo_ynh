@@ -1,6 +1,6 @@
-SOURCE_URL=https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.3/mytinytodo-v1.7.3.tar.gz
-SOURCE_SUM=7ba7b4c78cf12cb56c70bbc3768e22d4e9de871d09dd5c25126b9d9e3e0cdec9
+SOURCE_URL=https://api.github.com/repos/TryGhost/Admin/zipball/v1.7.3
+SOURCE_SUM=d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
+SOURCE_FORMAT=3
 SOURCE_IN_SUBDIR=true
 SOURCE_EXTRACT=true
