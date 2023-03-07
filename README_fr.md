@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # myTinyTodo pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/mytinytodo.svg)](https://dash.yunohost.org/appci/app/mytinytodo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/mytinytodo.svg)](https://dash.yunohost.org/appci/app/mytinytodo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+
 [![Installer myTinyTodo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer myTinyTodo rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer myTinyTodo rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 ### Features
 
@@ -35,15 +36,15 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 **Démo :** https://www.mytinytodo.net/demo/
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de myTinyTodo](./doc/screenshots/shot-v14b1.png)
+![Capture d’écran de myTinyTodo](./doc/screenshots/shot-v14b1.png)
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <http://www.mytinytodo.net/>
-* Documentation officielle de l'admin : <https://www.mytinytodo.net/faq.php>
-* Dépôt de code officiel de l'app : <https://github.com/maxpozdeev/mytinytodo>
+* Site officiel de l’app : <http://www.mytinytodo.net/>
+* Documentation officielle de l’admin : <https://www.mytinytodo.net/faq.php>
+* Dépôt de code officiel de l’app : <https://github.com/maxpozdeev/mytinytodo>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_mytinytodo>
 * Signaler un bug : <https://github.com/YunoHost-Apps/mytinytodo_ynh/issues>
 
@@ -59,4 +60,4 @@ ou
 sudo yunohost app upgrade mytinytodo -u https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
