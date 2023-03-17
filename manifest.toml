@@ -1,0 +1,61 @@
+packaging_format = 2
+
+id = "mytinytodo"
+name = "myTinyTodo"
+description.en = "Open source to-do list script"
+description.fr = "Gestionnaire de todo list"
+
+version = "1.7.3~ynh2"
+
+maintainers = ["plabuse"]
+
+[upstream]
+license = "GPL-2.0"
+website = "http://www.mytinytodo.net/"
+demo = "https://www.mytinytodo.net/demo/"
+admindoc = "https://www.mytinytodo.net/faq.php"
+code = "https://github.com/maxpozdeev/mytinytodo"
+
+[integration]
+yunohost = ">= 11.1.15"
+architectures = "all"
+multi_instance = false
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/mytinytodo"
+
+    [install.init_main_permission]
+    help.en = "If enabled, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si cette case est cochée, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    type = "group"
+    default = "visitors"
+
+[resources]
+    [resources.sources]
+
+        [resources.sources.main]
+        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.3/mytinytodo-v1.7.3.tar.gz"
+        sha256 = "7ba7b4c78cf12cb56c70bbc3768e22d4e9de871d09dd5c25126b9d9e3e0cdec9"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "mariadb-server php8.0-mysqli php8.0-pdo"
+
+    [resources.database]
+    type = "mysql"
