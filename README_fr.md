@@ -32,7 +32,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 - tyle for mobiles devices 
 
 
-**Version incluse :** 1.7.3~ynh2
+**Version incluse :** 1.7.3~ynh3
 
 **Démo :** https://www.mytinytodo.net/demo/
 
