@@ -1,3 +1,5 @@
+Simple way to manage your todo lists. 
+
 ### Features
 
 - Multiple lists
