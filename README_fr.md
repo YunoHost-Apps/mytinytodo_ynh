@@ -16,6 +16,8 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
+Simple way to manage your todo lists. 
+
 ### Features
 
 - Multiple lists
