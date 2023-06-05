@@ -31,7 +31,7 @@ Simple way to manage your todo lists.
 - Smart syntax improves creation of tasks
       (usage: /priority/ Task /tags/)
 - Print-friendly CSS
-- tyle for mobiles devices 
+- Style for mobiles devices 
 
 
 **Shipped version:** 1.7.3~ynh3
