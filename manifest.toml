@@ -17,7 +17,7 @@ admindoc = "https://www.mytinytodo.net/faq.php"
 code = "https://github.com/maxpozdeev/mytinytodo"
 
 [integration]
-yunohost = ">= 11.1.19"
+yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = false
 ldap = false
