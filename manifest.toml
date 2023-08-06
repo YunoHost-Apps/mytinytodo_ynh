@@ -17,7 +17,7 @@ admindoc = "https://www.mytinytodo.net/faq.php"
 code = "https://github.com/maxpozdeev/mytinytodo"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = false
 ldap = false
@@ -44,8 +44,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.3/mytinytodo-v1.7.3.tar.gz"
-        sha256 = "7ba7b4c78cf12cb56c70bbc3768e22d4e9de871d09dd5c25126b9d9e3e0cdec9"
+        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.4/mytinytodo-v1.7.4.tar.gz"
+        sha256 = "3eee5792a1d73292edd7137c68e219caba5a28601e376216267935e8b1b22864"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
