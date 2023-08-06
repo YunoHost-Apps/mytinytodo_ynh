@@ -34,7 +34,7 @@ Simple way to manage your todo lists.
 - Style for mobiles devices 
 
 
-**Version incluse :** 1.7.3~ynh3
+**Version incluse :** 1.7.4~ynh1
 
 **Démo :** https://www.mytinytodo.net/demo/
 
