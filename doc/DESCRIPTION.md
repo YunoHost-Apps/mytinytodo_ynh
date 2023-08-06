@@ -1,3 +1,5 @@
+Simple way to manage your todo lists. 
+
 ### Features
 
 - Multiple lists
@@ -11,4 +13,4 @@
 - Smart syntax improves creation of tasks
       (usage: /priority/ Task /tags/)
 - Print-friendly CSS
-- tyle for mobiles devices 
+- Style for mobiles devices 

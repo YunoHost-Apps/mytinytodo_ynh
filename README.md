@@ -16,6 +16,8 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
+Simple way to manage your todo lists. 
+
 ### Features
 
 - Multiple lists
@@ -29,10 +31,10 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 - Smart syntax improves creation of tasks
       (usage: /priority/ Task /tags/)
 - Print-friendly CSS
-- tyle for mobiles devices 
+- Style for mobiles devices 
 
 
-**Shipped version:** 1.7.3~ynh3
+**Shipped version:** 1.7.4~ynh1
 
 **Demo:** https://www.mytinytodo.net/demo/
 
