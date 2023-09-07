@@ -16,22 +16,17 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Simple way to manage your todo lists. 
+myTinyTodo permet de Gérer efficacement vos listes de tâches.
+### Caractéristiques
 
-### Features
-
-- Multiple lists
-- Task notes
-- Tags (and tag cloud)
-- Due dates
-- Priority (-1, 0, +1, +2)
-- Different sortings including sort by drag-and-drop
-- Search
-- Password protection
-- Smart syntax improves creation of tasks
-      (usage: /priority/ Task /tags/)
-- Print-friendly CSS
-- Style for mobiles devices 
+- Plusieurs listes
+- Notes de tâches
+- Tags (et nuage de tags)
+- Les dates d'échéance
+- Priorité (-1, 0, +1, +2)
+- Différents tris dont le tri par glisser-déposer
+- Recherche
+- Mot de passe de protection
 
 
 **Version incluse :** 1.7.4~ynh1
