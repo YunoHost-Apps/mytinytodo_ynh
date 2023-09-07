@@ -10,7 +10,3 @@ Simple way to manage your todo lists.
 - Different sortings including sort by drag-and-drop
 - Search
 - Password protection
-- Smart syntax improves creation of tasks
-      (usage: /priority/ Task /tags/)
-- Print-friendly CSS
-- Style for mobiles devices 

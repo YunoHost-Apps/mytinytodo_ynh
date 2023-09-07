@@ -35,8 +35,8 @@ ram.runtime = "50M"
     default = "/mytinytodo"
 
     [install.init_main_permission]
-    help.en = "If enabled, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin."
-    help.fr = "Si cette case est cochée, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    help.en = "If set to visitors, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si défini sur visiteurs, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
 
@@ -56,7 +56,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server php8.2-mysqli php8.2-pdo"
+    packages = "mariadb-server, php8.2-mysqli, php8.2-pdo"
 
     [resources.database]
     type = "mysql"
