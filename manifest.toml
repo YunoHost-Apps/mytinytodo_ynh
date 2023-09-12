@@ -5,7 +5,7 @@ name = "myTinyTodo"
 description.en = "Open source to-do list script"
 description.fr = "Gestionnaire de todo list"
 
-version = "1.7.4~ynh1"
+version = "1.7.5~ynh1"
 
 maintainers = ["plabuse"]
 
@@ -35,8 +35,8 @@ ram.runtime = "50M"
     default = "/mytinytodo"
 
     [install.init_main_permission]
-    help.en = "If set to visitors, myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin."
-    help.fr = "Si défini sur visiteurs, myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    help.en = "If set to 'visitors', myTinyTodo will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si défini sur 'visiteurs', myTinyTodo sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
 
@@ -44,8 +44,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.4/mytinytodo-v1.7.4.tar.gz"
-        sha256 = "3eee5792a1d73292edd7137c68e219caba5a28601e376216267935e8b1b22864"
+        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.7.5/mytinytodo-v1.7.5.tar.gz"
+        sha256 = "6a6926a13d7a66b68cf8ff4ebde40f3a8d5c046302e39005ab96b76c67c11882"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
