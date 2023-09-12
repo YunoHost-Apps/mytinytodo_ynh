@@ -30,7 +30,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Shipped version:** 1.7.4~ynh1
+**Shipped version:** 1.7.5~ynh1
 
 **Demo:** https://www.mytinytodo.net/demo/
 
