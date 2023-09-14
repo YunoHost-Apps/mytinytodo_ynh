@@ -29,7 +29,7 @@ myTinyTodo permet de Gérer efficacement vos listes de tâches.
 - Mot de passe de protection
 
 
-**Version incluse :** 1.7.6~ynh1
+**Version incluse :** 1.8~ynh1
 
 **Démo :** https://www.mytinytodo.net/demo/
 
