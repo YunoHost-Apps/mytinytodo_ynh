@@ -42,7 +42,7 @@ myTinyTodo permet de Gérer efficacement vos listes de tâches.
 * Site officiel de l’app : <http://www.mytinytodo.net/>
 * Documentation officielle de l’admin : <https://www.mytinytodo.net/faq.php>
 * Dépôt de code officiel de l’app : <https://github.com/maxpozdeev/mytinytodo>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_mytinytodo>
+* YunoHost Store: <https://apps.yunohost.org/app/mytinytodo>
 * Signaler un bug : <https://github.com/YunoHost-Apps/mytinytodo_ynh/issues>
 
 ## Informations pour les développeurs

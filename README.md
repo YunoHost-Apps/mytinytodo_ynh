@@ -43,7 +43,7 @@ Simple way to manage your todo lists.
 * Official app website: <http://www.mytinytodo.net/>
 * Official admin documentation: <https://www.mytinytodo.net/faq.php>
 * Upstream app code repository: <https://github.com/maxpozdeev/mytinytodo>
-* YunoHost documentation for this app: <https://yunohost.org/app_mytinytodo>
+* YunoHost Store: <https://apps.yunohost.org/app/mytinytodo>
 * Report a bug: <https://github.com/YunoHost-Apps/mytinytodo_ynh/issues>
 
 ## Developer info
