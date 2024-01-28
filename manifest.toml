@@ -5,7 +5,7 @@ name = "myTinyTodo"
 description.en = "Open source to-do list script"
 description.fr = "Gestionnaire de todo list"
 
-version = "1.8.0~ynh1"
+version = "1.8.1~ynh1"
 
 maintainers = ["plabuse"]
 
@@ -47,8 +47,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.8.0/mytinytodo-v1.8.0.tar.gz"
-        sha256 = "6343bf1c60664a896ad3f111639386113fd31904ca63a41480dacf61672e918c"
+        url = "https://github.com/maxpozdeev/mytinytodo/archive/refs/tags/v1.8.1.tar.gz"
+        sha256 = "ec5eb3cc43b937e7c92198487bd4c52970dae5a7bed900d8005b71ec3c58227f"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
