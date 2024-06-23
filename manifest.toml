@@ -17,7 +17,8 @@ admindoc = "https://www.mytinytodo.net/faq.php"
 code = "https://github.com/maxpozdeev/mytinytodo"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.16"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
@@ -59,7 +60,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.2-mysqli, php8.2-pdo"
+    packages = "mariadb-server, php8.3-mysqli, php8.3-pdo"
 
     [resources.database]
     type = "mysql"
