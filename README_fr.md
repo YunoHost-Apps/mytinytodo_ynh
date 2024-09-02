@@ -17,6 +17,7 @@ Il NE doit PAS être modifié à la main.
 ## Vue d’ensemble
 
 myTinyTodo permet de Gérer efficacement vos listes de tâches.
+
 ### Caractéristiques
 
 - Plusieurs listes
