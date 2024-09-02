@@ -30,7 +30,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Versión actual:** 1.8.1~ynh1
+**Versión actual:** 1.8.1~ynh2
 
 **Demo:** <https://www.mytinytodo.net/demo/>
 
