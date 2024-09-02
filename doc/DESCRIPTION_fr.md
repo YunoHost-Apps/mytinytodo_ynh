@@ -1,4 +1,5 @@
 myTinyTodo permet de Gérer efficacement vos listes de tâches.
+
 ### Caractéristiques
 
 - Plusieurs listes
