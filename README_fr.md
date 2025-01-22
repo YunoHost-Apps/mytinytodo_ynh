@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # myTinyTodo pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/mytinytodo)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Installer myTinyTodo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 

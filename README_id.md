@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # myTinyTodo untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Status kerja](https://apps.yunohost.org/badge/state/mytinytodo)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Pasang myTinyTodo dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 

@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # myTinyTodo YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/mytinytodo)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Instalatu myTinyTodo YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
