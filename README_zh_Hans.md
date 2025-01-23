@@ -5,7 +5,9 @@
 
 # YunoHost 上的 myTinyTodo
 
-[![集成程度](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![工作状态](https://apps.yunohost.org/badge/state/mytinytodo)
+![维护状态](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![使用 YunoHost 安装 myTinyTodo](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
@@ -30,7 +32,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**分发版本：** 1.8.1~ynh2
+**分发版本：** 1.8.1~ynh3
 
 **演示：** <https://www.mytinytodo.net/demo/>
 

@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # myTinyTodo for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Working status](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Working status](https://apps.yunohost.org/badge/state/mytinytodo)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Install myTinyTodo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
@@ -30,7 +32,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Shipped version:** 1.8.1~ynh2
+**Shipped version:** 1.8.1~ynh3
 
 **Demo:** <https://www.mytinytodo.net/demo/>
 

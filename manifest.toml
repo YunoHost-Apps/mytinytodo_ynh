@@ -5,7 +5,7 @@ name = "myTinyTodo"
 description.en = "Open source to-do list script"
 description.fr = "Gestionnaire de todo list"
 
-version = "1.8.1~ynh2"
+version = "1.8.1~ynh3"
 
 maintainers = ["plabuse"]
 
@@ -17,13 +17,12 @@ admindoc = "https://www.mytinytodo.net/faq.php"
 code = "https://github.com/maxpozdeev/mytinytodo"
 
 [integration]
-yunohost = ">= 11.2.29"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = false
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -61,7 +60,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.2-mysqli, php8.2-pdo"
+    packages = "mariadb-server, php8.3-mysqli, php8.3-pdo"
 
     [resources.database]
     type = "mysql"

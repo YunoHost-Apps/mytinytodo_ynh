@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # myTinyTodo para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Estado funcional](https://apps.yunohost.org/badge/state/mytinytodo)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Instalar myTinyTodo con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
@@ -30,7 +32,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Versión actual:** 1.8.1~ynh2
+**Versión actual:** 1.8.1~ynh3
 
 **Demo:** <https://www.mytinytodo.net/demo/>
 
@@ -48,7 +50,7 @@ Simple way to manage your todo lists.
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/mytinytodo_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

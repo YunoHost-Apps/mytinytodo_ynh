@@ -5,7 +5,9 @@
 
 # myTinyTodo для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/mytinytodo.svg)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/mytinytodo.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/mytinytodo.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/mytinytodo)](https://ci-apps.yunohost.org/ci/apps/mytinytodo/)
+![Состояние работы](https://apps.yunohost.org/badge/state/mytinytodo)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/mytinytodo)
 
 [![Установите myTinyTodo с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=mytinytodo)
 
@@ -30,7 +32,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Поставляемая версия:** 1.8.1~ynh2
+**Поставляемая версия:** 1.8.1~ynh3
 
 **Демо-версия:** <https://www.mytinytodo.net/demo/>
 
