@@ -32,7 +32,7 @@ Simple way to manage your todo lists.
 - Password protection
 
 
-**Paketatutako bertsioa:** 1.8.1~ynh2
+**Paketatutako bertsioa:** 1.8.1~ynh3
 
 **Demoa:** <https://www.mytinytodo.net/demo/>
 
