@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "mytinytodo"
@@ -5,7 +7,7 @@ name = "myTinyTodo"
 description.en = "Open source to-do list script"
 description.fr = "Gestionnaire de todo list"
 
-version = "1.8.1~ynh3"
+version = "1.8.1~ynh4"
 
 maintainers = ["plabuse"]
 
@@ -23,6 +25,7 @@ architectures = "all"
 multi_instance = false
 
 ldap = false
+
 sso = false
 
 disk = "50M"
@@ -46,10 +49,10 @@ ram.runtime = "50M"
 [resources]
     [resources.sources]
 
-        [resources.sources.main]
-        url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.8.1/mytinytodo-v1.8.1.tar.gz"
-        sha256 = "1add8ea5ca3d43ec7b8d6c6c73689b620534e4fbacb270333c61117350d258b3"
-        autoupdate.strategy = "latest_github_tag"
+    [resources.sources.main]
+    url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.8.1/mytinytodo-v1.8.1.tar.gz"
+    sha256 = "1add8ea5ca3d43ec7b8d6c6c73689b620534e4fbacb270333c61117350d258b3"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
