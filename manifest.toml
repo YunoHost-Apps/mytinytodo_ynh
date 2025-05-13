@@ -7,7 +7,7 @@ name = "myTinyTodo"
 description.en = "Open source to-do list script"
 description.fr = "Gestionnaire de todo list"
 
-version = "1.8.1~ynh4"
+version = "1.8.2~ynh1"
 
 maintainers = ["plabuse"]
 
@@ -50,8 +50,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.8.1/mytinytodo-v1.8.1.tar.gz"
-    sha256 = "1add8ea5ca3d43ec7b8d6c6c73689b620534e4fbacb270333c61117350d258b3"
+    url = "https://github.com/maxpozdeev/mytinytodo/releases/download/v1.8.2/mytinytodo-v1.8.2.tar.gz"
+    sha256 = "94d41c51cfb211d33d7f400c451d6ca99fe5f3c149bb4ad29d4628cf774123a8"
     autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -63,7 +63,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server, php8.3-mysqli, php8.3-pdo"
+    packages = "mariadb-server, php8.4-mysqli, php8.4-pdo"
 
     [resources.database]
     type = "mysql"
