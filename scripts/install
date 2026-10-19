@@ -25,9 +25,9 @@ ynh_config_add --template="config.php" --destination="$install_dir/config.php"
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression "Creating a MySQL database..."
+#ynh_script_progression "Creating a MySQL database..."
 
-ynh_mysql_db_shell < ../conf/sql/mytinytodo.sql
+#ynh_mysql_db_shell < ../conf/sql/mytinytodo.sql
 
 #=================================================
 # SYSTEM CONFIGURATION
